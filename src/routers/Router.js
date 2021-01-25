@@ -33,6 +33,9 @@ function AppRouter() {
             <PrivateRoute path="/employeelist">
               <EmployeeList />
             </PrivateRoute>
+            <PrivateRoute path="/demo">
+              <Demo />
+            </PrivateRoute>
         </Switch>
       </Router>
     </Fragment>

@@ -68,8 +68,10 @@ export default function NavList() {
             </ListItemIcon>
             <Link
               to="employeelist"
-              style={{ textDecoration: "none", color: "black" }}>
-                <ListItemText primary="Employee Status" /></Link>
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <ListItemText primary="Employee Status" />
+            </Link>
           </ListItem>
         </List>
       </Collapse>
@@ -124,8 +126,10 @@ export default function NavList() {
         <ListItemIcon>
           <DateRangeIcon style={{ color: "green" }} />
         </ListItemIcon>
-      
-        <ListItemText primary="Work Calender" />
+
+        <Link to="demo" style={{ textDecoration: "none", color: "black" }}>
+          <ListItemText primary="Work Calender" />
+        </Link>
       </ListItem>
     </List>
   );
