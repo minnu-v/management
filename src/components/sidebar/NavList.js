@@ -17,6 +17,7 @@ import UpdateIcon from "@material-ui/icons/Update";
 import GroupIcon from "@material-ui/icons/Group";
 import DateRangeIcon from "@material-ui/icons/DateRange";
 import { Link } from "react-router-dom";
+import Profile from "components/views/Profile";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,12 +42,16 @@ export default function NavList() {
   };
 
   return (
+  
     <List>
+     
+       <Profile/>
+     
       <ListItem button onClick={handleClick}>
         <ListItemIcon>
           <GroupIcon style={{ color: "blue" }} />
         </ListItemIcon>
-        <ListItemText primary="Employee Management" />
+        <ListItemText primary="Employee Management"/>
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
