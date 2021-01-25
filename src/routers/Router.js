@@ -1,15 +1,15 @@
 import Login from "components/login/Login";
-import Dashboard from "components/dashboard/Dashboard"
-import AllInfo from '../components/EmployeeManagement/AddEmployee/AllInfo';
+// import Dashboard from "components/sidebar/Sidebar"
+import AllInfo from '../components/employeeManagement/addEmployee/AllInfo';
 import Demo from '../components/workCalender/Demo';
 import Approval from '../components/leaveManagement/Approval';
 import Request from '../components/leaveManagement/Request';
-import EmployeeList from '../components/EmployeeManagement/statusofemployee/EmployeeList';
+import EmployeeList from '../components/employeeManagement/statusOfEmployee/EmployeeList';
 import React, { Fragment } from "react";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
-
+ 
 function AppRouter() {
   return (
     <Fragment>
@@ -18,13 +18,10 @@ function AppRouter() {
           <PublicRoute path="/" exact>
             <Login />
           </PublicRoute>
-          <PrivateRoute path="/dashboard">
-            <Dashboard/>
-            </PrivateRoute>
             <PrivateRoute path="/allinfo">
               <AllInfo />
             </PrivateRoute>
-            <PrivateRoute path="/demo">
+            <PrivateRoute path="/dashboard">
               <Demo />
             </PrivateRoute>
             <PrivateRoute path="/request">
@@ -41,5 +38,5 @@ function AppRouter() {
     </Fragment>
   );
 }
-
+ 
 export default AppRouter;

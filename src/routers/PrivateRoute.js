@@ -1,4 +1,5 @@
 import { Redirect, Route } from "react-router-dom";
+import Sidebar from "components/sidebar/Sidebar";
 
 const PrivateRoute = ({ children, ...rest }) => {
   let auth = JSON.parse(localStorage.getItem("isLogin"));
@@ -7,7 +8,7 @@ const PrivateRoute = ({ children, ...rest }) => {
       {...rest}
       render={({ location }) =>
         auth ? (
-          children
+          <Sidebar children={children} />
         ) : (
           <Redirect
             to={{
@@ -19,5 +20,5 @@ const PrivateRoute = ({ children, ...rest }) => {
       }
     />
   );
-}
+};
 export default PrivateRoute;

@@ -19,7 +19,7 @@ import NavList from "./NavList";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import Demo from "components/workCalender/Demo";
 const drawerWidth = 290;
-
+ 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -98,8 +98,8 @@ const useStyles = makeStyles((theme) => ({
     height: 240,
   },
 }));
-
-export default function Dashboard() {
+ 
+export default function Sidebar({ children }) {
   const history = useHistory();
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
@@ -109,13 +109,12 @@ export default function Dashboard() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
-
+ 
   const handleLogout = () => {
     localStorage.setItem("isLogin", false);
     history.push("/");
   };
-
+ 
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -178,7 +177,7 @@ export default function Dashboard() {
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}></Grid>
         </Container>
-        <Demo/>
+        {children}
       </main>
     </div>
   );
