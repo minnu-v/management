@@ -33,7 +33,7 @@ const Profile = ({ className, ...rest }) => {
       <CardContent>
         <Box alignItems="center" display="flex" flexDirection="column">
           <Avatar className={classes.avatar} src={user.avatar} />
-          <Typography color="textPrimary" gutterBottom variant="h6">
+          <Typography color="textPrimary" gutterBottom variant="">
             {user.name}
           </Typography>
         </Box>
