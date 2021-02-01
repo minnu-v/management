@@ -145,7 +145,7 @@ export default function Sidebar({ children }) {
             noWrap
             className={classes.title}
           >
-            Dashboard
+            MANAGEMENT  SYSTEM
           </Typography>
           <IconButton aria-label="show 17 new notifications" color="inherit">
             <Badge badgeContent={17} color="secondary">
