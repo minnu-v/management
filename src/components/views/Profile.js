@@ -18,7 +18,9 @@ const user = {
 };
 
 const useStyles = makeStyles(() => ({
-  root: {},
+  root: {
+    marginBottom:10,
+  },
   avatar: {
     height: 70,
     width: 70,

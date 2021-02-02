@@ -16,14 +16,53 @@ import {
   Resources,
   DragDropProvider,
 } from '@devexpress/dx-react-scheduler-material-ui';
-import WbSunny from '@material-ui/icons/WbSunny';
-import FilterDrama from '@material-ui/icons/FilterDrama';
-import Opacity from '@material-ui/icons/Opacity';
 import { withStyles } from '@material-ui/core/styles';
-import {owners} from "./Tasks";
+import { owners } from './Tasks';
 
 const appointments = [
-  
+  {
+    id: 0,
+    title: 'Republic Day',
+    startDate: '2021-01-26T00:00',
+    endDate: '2021-01-26T23:59',
+    ownerId: 1,
+  },   {
+    id: 1,
+    title: 'Good Friday',
+    startDate: '2021-04-10T00:00',
+    endDate: '2021-04-10T23:59',
+    ownerId: 2,
+  },{
+    id: 2,
+    title: 'Vishu',
+    startDate: '2021-04-14T00:00',
+    endDate: '2021-04-14T23:59',
+    ownerId: 1,
+  },{
+    id: 3,
+    title: 'May Day',
+    startDate: '2021-05-01T00:00',
+    endDate: '2021-05-01T23:59',
+    ownerId: 2,
+  },{
+    id: 4,
+    title: 'Eid al-Fitr',
+    startDate: '2021-05-12T18:00',
+    endDate: '2021-05-13T18:00',
+    ownerId: 1,
+  },{
+    id: 5,
+    title: 'Bakrid',
+    startDate: '2021-07-23T00:00',
+    endDate: '2021-07-23T23:59',
+    ownerId: 2,
+  },{
+    id: 6,
+    title: 'Independence Day',
+    startDate: '2021-08-15T00:00',
+    endDate: '2021-08-15T23:59',
+    ownerId: 1,
+  },
 ];
 
 const resources = [{
@@ -162,24 +201,13 @@ const styles = theme => ({
   },
 });
 
-const WeatherIcon = ({ classes, id }) => {
-  switch (id) {
-    case 0:
-      return <Opacity className={classes.rain} fontSize="large" />;
-    case 1:
-      return <WbSunny className={classes.sun} fontSize="large" />;
-    case 2:
-      return <FilterDrama className={classes.cloud} fontSize="large" />;
-    default:
-      return null;
-  }
-};
-
+// #FOLD_BLOCK
 const CellBase = React.memo(({
   classes,
   startDate,
   formatDate,
   otherMonth,
+  // #FOLD_BLOCK
 }) => {
   const iconId = Math.abs(Math.floor(Math.sin(startDate.getDate()) * 10) % 3);
   const isFirstMonthDay = startDate.getDate() === 1;
@@ -197,9 +225,7 @@ const CellBase = React.memo(({
         [classes.opacity]: otherMonth,
       })}
     >
-      <div className={classes.content}>
-        <WeatherIcon classes={classes} id={iconId} />
-      </div>
+      
       <div className={classes.text}>
         {formatDate(startDate, formatOptions)}
       </div>
@@ -227,16 +253,21 @@ const FlexibleSpace = withStyles(styles, { name: 'ToolbarRoot' })(({ classes, ..
 ));
 
 export default class Demo extends React.PureComponent {
+  // #FOLD_BLOCK
   constructor(props) {
     super(props);
+    var today = new Date(),
+    date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 
     this.state = {
       data: appointments,
+      date : date
     };
 
     this.commitChanges = this.commitChanges.bind(this);
   }
 
+  // #FOLD_BLOCK
   commitChanges({ added, changed, deleted }) {
     this.setState((state) => {
       let { data } = state;
@@ -267,7 +298,7 @@ export default class Demo extends React.PureComponent {
             onCommitChanges={this.commitChanges}
           />
           <ViewState
-            defaultCurrentDate="2021-01-29"
+            defaultCurrentDate={this.state.date}
           />
 
           <MonthView
