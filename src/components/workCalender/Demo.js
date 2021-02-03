@@ -62,6 +62,36 @@ const appointments = [
     startDate: '2021-08-15T00:00',
     endDate: '2021-08-15T23:59',
     ownerId: 1,
+  },{
+    id: 7,
+    title: 'First Onam',
+    startDate: '2021-08-20T00:00',
+    endDate: '2021-08-20T23:59',
+    ownerId: 2,
+  },{
+    id: 8,
+    title: 'Thiruvonam',
+    startDate: '2021-08-21T00:00',
+    endDate: '2021-08-21T23:59',
+    ownerId: 1,
+  },{
+    id: 9,
+    title: 'Gandhi Jayanthi',
+    startDate: '2021-10-02T00:00',
+    endDate: '2021-10-02T23:59',
+    ownerId: 2,
+  },{
+    id: 10,
+    title: 'Mahanavami',
+    startDate: '2021-10-14T00:00',
+    endDate: '2021-10-14T23:59',
+    ownerId: 1,
+  },{
+    id: 10,
+    title: 'Christmas',
+    startDate: '2021-12-25T00:00',
+    endDate: '2021-12-25T23:59',
+    ownerId: 1,
   },
 ];
 

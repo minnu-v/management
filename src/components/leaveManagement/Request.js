@@ -3,7 +3,6 @@ import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
@@ -41,8 +40,15 @@ const rows = [
 ];
 
 const useStyles = makeStyles({
+  wrapper:{
+    paddingLeft:30,
+    paddingRight:30,
+    paddingBottom:30,
+    paddingTop:20,
+  },
   table: {
     minWidth: 700,
+    border:"1px solid lightgrey",
   },
 });
 
@@ -50,7 +56,7 @@ export default function CustomizedTables() {
   const classes = useStyles();
 
   return (
-    <TableContainer component={Paper}>
+    <Paper className={classes.wrapper}>
       <Table className={classes.table} aria-label="customized table">
         <TableHead>
           <TableRow>
@@ -81,6 +87,6 @@ export default function CustomizedTables() {
           ))}
         </TableBody>
       </Table>
-    </TableContainer>
+    </Paper>
   );
 }
