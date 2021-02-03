@@ -7,60 +7,63 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
+
 const StyledTableCell = withStyles((theme) => ({
   head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+    color:"#ad40bf",
   },
   body: {
     fontSize: 14,
-  },
+  },  
 }))(TableCell);
 
 const StyledTableRow = withStyles((theme) => ({
   root: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.action.hover,
-    },
+    
   },
 }))(TableRow);
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein};
+function createData(EmployeeID, Name, Status, More) {
+  return { EmployeeID, Name, Status, More };
 }
 
 const rows = [
-  createData(),
-  createData(),
-  createData(),
-  createData(),
-  createData(),
-  createData(),
-  createData(),
+  createData(''),
+  createData(''),
+  createData(''),
+  createData(''),
+  createData(''),
+  createData(''),
+  createData(''),
+  
 ];
 
 const useStyles = makeStyles({
   wrapper:{
-    paddingLeft:30,
-    paddingRight:30,
-    paddingBottom:30,
-    paddingTop:20,
+    padding:40,
   },
   table: {
     minWidth: 700,
-    border:"1px solid lightgrey",
   },
+  tdStyle: {
+    padding:25,
+  },
+  box:{
+    border: "1px solid lightgrey",
+    padding:25,
+  }
 });
 
 export default function CustomizedTables() {
   const classes = useStyles();
 
   return (
+    <div className={classes.box}>
     <Paper className={classes.wrapper}>
       <Table className={classes.table} aria-label="customized table">
-        <TableHead>
+        <TableHead> 
           <TableRow>
-            <StyledTableCell>No</StyledTableCell>
+          <StyledTableCell>No</StyledTableCell>
             <StyledTableCell align="right">EmpId</StyledTableCell>
             <StyledTableCell align="right">Leave Type</StyledTableCell>
             <StyledTableCell align="right">Requested date</StyledTableCell>
@@ -72,21 +75,22 @@ export default function CustomizedTables() {
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell component="th" scope="row">
-                {row.name}
+            <StyledTableRow key={row.EmployeeID}  >
+              <StyledTableCell component="th" scope="row" className={classes.tdStyle}>
+                {row.EmployeeID}
               </StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-              <StyledTableCell align="right">{row.protein}</StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
+              <StyledTableCell align="right">{row.Name}</StyledTableCell>
+              <StyledTableCell align="right">{row.Status}</StyledTableCell>
+              <StyledTableCell align="right">{row.More}</StyledTableCell>
+              <StyledTableCell align="right">{row.Name}</StyledTableCell>
+              <StyledTableCell align="right">{row.Status}</StyledTableCell>
+              <StyledTableCell align="right">{row.More}</StyledTableCell>
+              <StyledTableCell align="right">{row.More}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
       </Table>
     </Paper>
+    </div>
   );
 }

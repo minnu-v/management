@@ -10,19 +10,16 @@ import Paper from '@material-ui/core/Paper';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+    color:"#ad40bf",
   },
   body: {
     fontSize: 14,
-  },
+  },  
 }))(TableCell);
 
 const StyledTableRow = withStyles((theme) => ({
   root: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.action.hover,
-    },
+    
   },
 }))(TableRow);
 
@@ -43,35 +40,39 @@ const rows = [
 
 const useStyles = makeStyles({
   wrapper:{
-    paddingLeft:30,
-    paddingRight:30,
-    paddingBottom:30,
-    paddingTop:20,
+    padding:40,
   },
   table: {
     minWidth: 700,
-    border:"1px solid lightgrey",
   },
+  tdStyle: {
+    padding:25,
+  },
+  box:{
+    border: "1px solid lightgrey",
+    padding:25,
+  }
 });
 
 export default function CustomizedTables() {
   const classes = useStyles();
 
   return (
+    <div className={classes.box}>
     <Paper className={classes.wrapper}>
       <Table className={classes.table} aria-label="customized table">
-        <TableHead>
+        <TableHead> 
           <TableRow>
-            <StyledTableCell>EmployeeID</StyledTableCell>
-            <StyledTableCell align="right">Name</StyledTableCell>
-            <StyledTableCell align="right">Status</StyledTableCell>
-            <StyledTableCell align="right">More</StyledTableCell>
+            <StyledTableCell >EMPLOYEE ID</StyledTableCell>
+            <StyledTableCell align="right">NAME</StyledTableCell>
+            <StyledTableCell align="right">STATUS</StyledTableCell>
+            <StyledTableCell align="right">MORE</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <StyledTableRow key={row.EmployeeID}>
-              <StyledTableCell component="th" scope="row">
+            <StyledTableRow key={row.EmployeeID}  >
+              <StyledTableCell component="th" scope="row" className={classes.tdStyle}>
                 {row.EmployeeID}
               </StyledTableCell>
               <StyledTableCell align="right">{row.Name}</StyledTableCell>
@@ -82,5 +83,6 @@ export default function CustomizedTables() {
         </TableBody>
       </Table>
     </Paper>
+    </div>
   );
 }
