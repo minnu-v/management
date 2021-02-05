@@ -15,5 +15,9 @@ export const owners = [
     text: 'Akhila Sulthana',
     id: 2,
     color: '#ff99bb',
+  },{
+    text: 'Aneena Akhil',
+    id: 3,
+    color: '#c579d2',
   }
 ];

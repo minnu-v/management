@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import EmpInfo from './EmpInfo';
 import JobInfo from './JobInfo';
+import Uploads from './Uploads';
 import EmergencyInfo from './EmergencyInfo';
 
 
@@ -49,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const steps = ['Employee Information', 'Job Details', 'Emergency contact'];
+const steps = ['Employee Information', 'Job Details', 'Emergency contact', 'Uploads'];
 
 function getStepContent(step) {
   switch (step) {
@@ -59,6 +60,8 @@ function getStepContent(step) {
       return <JobInfo />;
     case 2:
       return <EmergencyInfo />;
+    case 3:
+      return <Uploads />;
     default:
       throw new Error('Unknown step');
   }

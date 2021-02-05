@@ -47,8 +47,8 @@ const appointments = [
   },{
     id: 4,
     title: 'Eid al-Fitr',
-    startDate: '2021-05-12T18:00',
-    endDate: '2021-05-13T18:00',
+    startDate: '2021-05-13T00:00',
+    endDate: '2021-05-13T23:59',
     ownerId: 1,
   },{
     id: 5,
@@ -67,13 +67,13 @@ const appointments = [
     title: 'First Onam',
     startDate: '2021-08-20T00:00',
     endDate: '2021-08-20T23:59',
-    ownerId: 2,
+    ownerId: 3,
   },{
     id: 8,
     title: 'Thiruvonam',
     startDate: '2021-08-21T00:00',
     endDate: '2021-08-21T23:59',
-    ownerId: 1,
+    ownerId: 2,
   },{
     id: 9,
     title: 'Gandhi Jayanthi',
