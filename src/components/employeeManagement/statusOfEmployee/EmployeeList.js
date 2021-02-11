@@ -54,6 +54,10 @@ const rows = [
     <Chip color="primary" size="small" label="Deactive"></Chip>,
     <Link to="">View more</Link>
   ),
+  createData('Frozen yoghurt', 159, 6.0,<Link to="detailview">View more</Link>),
+  createData('Frozen yoghurt', 159, 6.0,<Link to="detailview">View more</Link>),
+  createData('Frozen yoghurt', 159, 6.0,<Link to="detailview">View more</Link>),
+  createData('Frozen yoghurt', 159, 6.0,<Link to="detailview">View more</Link>),
 ];
 
 const useStyles = makeStyles({

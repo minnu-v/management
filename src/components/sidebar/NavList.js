@@ -132,7 +132,7 @@ export default function NavList() {
           <DateRangeIcon style={{ color: "green" }} />
         </ListItemIcon>
 
-        <Link to="demo" style={{ textDecoration: "none", color: "black" }}>
+        <Link to="calender" style={{ textDecoration: "none", color: "black" }}>
           <ListItemText primary="Work Calender" />
         </Link>
       </ListItem>
