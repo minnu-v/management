@@ -1,7 +1,7 @@
 import Login from "components/login/Login";
 // import Dashboard from "components/sidebar/Sidebar"
 import AllInfo from '../components/employeeManagement/addEmployee/AllInfo';
-import Demo from '../components/workCalender/Demo';
+import Calender from '../components/workCalender/Calender';
 import Approval from '../components/leaveManagement/Approval';
 import Request from '../components/leaveManagement/Request';
 import EmployeeList from '../components/employeeManagement/statusOfEmployee/EmployeeList';
@@ -23,7 +23,7 @@ function AppRouter() {
               <AllInfo />
             </PrivateRoute>
             <PrivateRoute path="/dashboard">
-              <Demo />
+              <Calender />
             </PrivateRoute>
             <PrivateRoute path="/request">
               <Request />
@@ -37,8 +37,8 @@ function AppRouter() {
             <PrivateRoute path="/employeelist">
               <EmployeeList />
             </PrivateRoute>
-            <PrivateRoute path="/demo">
-              <Demo />
+            <PrivateRoute path="/calender">
+              <Calender />
             </PrivateRoute>
         </Switch>
       </Router>
