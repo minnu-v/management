@@ -29,10 +29,10 @@ function createData(EmployeeID, Name, Status, More) {
 }
 
 const rows = [
-  createData('Frozen yoghurt', 159, 6.0,<Link to="">View more</Link>),
-  createData('Frozen yoghurt', 159, 6.0,<Link to="">View more</Link>),
-  createData('Frozen yoghurt', 159, 6.0,<Link to="">View more</Link>),
-  createData('Frozen yoghurt', 159, 6.0,<Link to="">View more</Link>),
+  createData('Frozen yoghurt', 159, 6.0,<Link to="detailview">View more</Link>),
+  createData('Frozen yoghurt', 159, 6.0,<Link to="detailview">View more</Link>),
+  createData('Frozen yoghurt', 159, 6.0,<Link to="detailview">View more</Link>),
+  createData('Frozen yoghurt', 159, 6.0,<Link to="detailview">View more</Link>),
 ];
 
 const useStyles = makeStyles({

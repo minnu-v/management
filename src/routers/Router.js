@@ -9,6 +9,7 @@ import React, { Fragment } from "react";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
+import DetailView from "components/employeeManagement/statusOfEmployee/DetailView";
  
 function AppRouter() {
   return (
@@ -29,6 +30,9 @@ function AppRouter() {
             </PrivateRoute>
             <PrivateRoute path="/approval">
               <Approval />
+            </PrivateRoute>
+            <PrivateRoute path="/detailview">
+              <DetailView />
             </PrivateRoute>
             <PrivateRoute path="/employeelist">
               <EmployeeList />
