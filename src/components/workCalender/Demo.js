@@ -29,8 +29,8 @@ const appointments = [
   },   {
     id: 1,
     title: 'Good Friday',
-    startDate: '2021-04-10T00:00',
-    endDate: '2021-04-10T23:59',
+    startDate: '2021-04-02T00:00',
+    endDate: '2021-04-02T23:59',
     ownerId: 2,
   },{
     id: 2,
@@ -53,8 +53,8 @@ const appointments = [
   },{
     id: 5,
     title: 'Bakrid',
-    startDate: '2021-07-23T00:00',
-    endDate: '2021-07-23T23:59',
+    startDate: '2021-07-20T00:00',
+    endDate: '2021-07-20T23:59',
     ownerId: 2,
   },{
     id: 6,

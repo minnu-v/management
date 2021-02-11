@@ -6,6 +6,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import {Link} from 'react-router-dom';
 
 
 const StyledTableCell = withStyles((theme) => ({
@@ -28,14 +29,10 @@ function createData(EmployeeID, Name, Status, More) {
 }
 
 const rows = [
-  createData(''),
-  createData(''),
-  createData(''),
-  createData(''),
-  createData(''),
-  createData(''),
-  createData(''),
-  
+  createData('Frozen yoghurt', 159, 6.0,<Link to="">View more</Link>),
+  createData('Frozen yoghurt', 159, 6.0,<Link to="">View more</Link>),
+  createData('Frozen yoghurt', 159, 6.0,<Link to="">View more</Link>),
+  createData('Frozen yoghurt', 159, 6.0,<Link to="">View more</Link>),
 ];
 
 const useStyles = makeStyles({
