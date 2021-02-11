@@ -18,6 +18,7 @@ import GroupIcon from "@material-ui/icons/Group";
 import DateRangeIcon from "@material-ui/icons/DateRange";
 import { Link } from "react-router-dom";
 import Profile from "components/views/Profile";
+import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -90,7 +91,7 @@ export default function NavList() {
 
       <ListItem button onClick={handleClickLeave}>
         <ListItemIcon>
-          <EventAvailableIcon style={{ color: "red" }} />
+          <EventAvailableIcon style={{ color: "violet" }} />
         </ListItemIcon>
         <ListItemText primary="Leave Management" />
         {leave ? <ExpandLess /> : <ExpandMore />}
@@ -136,6 +137,15 @@ export default function NavList() {
           <ListItemText primary="Work Calender" />
         </Link>
       </ListItem>
+      <ListItem button>
+        <ListItemIcon>
+          <ErrorOutlineIcon style={{ color: "red" }} />
+        </ListItemIcon>
+      <Link to="error" style={{ textDecoration: "none", color: "black" }}>
+          <ListItemText primary="Error" />
+        </Link>
+        </ListItem>
+
     </List>
   );
 }

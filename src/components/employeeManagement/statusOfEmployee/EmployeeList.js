@@ -34,19 +34,19 @@ const rows = [
     1,
     "Akhila",
     <Chip color="primary" size="small" label="Deactive"></Chip>,
-    <Link to="">View more</Link>
+    <Link to="detailview">View more</Link>
   ),
   createData(
     2,
     "Aneena",
     <Chip color="primary" size="small" label="Deactive"></Chip>,
-    <Link to="">View more</Link>
+    <Link to="detailview">View more</Link>
   ),
   createData(
     3,
     "Archit",
     <Chip color="primary" size="small" label="Deactive"></Chip>,
-    <Link to="">View more</Link>
+    <Link to="detailview">View more</Link>
   ),
   createData(
     4,
@@ -54,7 +54,6 @@ const rows = [
     <Chip color="primary" size="small" label="Deactive"></Chip>,
     <Link to="detailview">View more</Link>
   ),
- 
 ];
 
 const useStyles = makeStyles({
