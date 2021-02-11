@@ -16,6 +16,7 @@ import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import UpdateIcon from "@material-ui/icons/Update";
 import GroupIcon from "@material-ui/icons/Group";
 import DateRangeIcon from "@material-ui/icons/DateRange";
+import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import { Link } from "react-router-dom";
 import Profile from "components/views/Profile";
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
@@ -84,7 +85,7 @@ export default function NavList() {
 
       <ListItem button>
         <ListItemIcon>
-          <WorkOutlineIcon style={{ color: "purple" }} />
+          <WorkOutlineIcon style={{ color: "gray" }} />
         </ListItemIcon>
         <ListItemText primary="Work Management" />
       </ListItem>
@@ -141,11 +142,10 @@ export default function NavList() {
         <ListItemIcon>
           <ErrorOutlineIcon style={{ color: "red" }} />
         </ListItemIcon>
-      <Link to="error" style={{ textDecoration: "none", color: "black" }}>
+        <Link to="error" style={{ textDecoration: "none", color: "black" }}>
           <ListItemText primary="Error" />
         </Link>
-        </ListItem>
-
+      </ListItem>
     </List>
   );
 }

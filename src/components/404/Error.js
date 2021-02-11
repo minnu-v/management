@@ -56,8 +56,9 @@ const Error = () => {
             <img
               alt="Under development"
               className={classes.image}
-              src ="images/not_found.svg"
-            />
+
+              src="images/not_found.svg"
+           />
           </Box>
         </Container>
       </Box>

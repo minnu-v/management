@@ -11,6 +11,7 @@ import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 import DetailView from "components/employeeManagement/statusOfEmployee/DetailView";
 import  Error from "components/404/Error";
+
 function AppRouter() {
   return (
     <Fragment>
@@ -41,7 +42,10 @@ function AppRouter() {
               <Error />
             </PrivateRoute>
             <PrivateRoute path="/calender">
-              <Calender />
+              <Calender/>
+            </PrivateRoute>
+            <PrivateRoute path="/error">
+              <Error />
             </PrivateRoute>
         </Switch>
       </Router>
