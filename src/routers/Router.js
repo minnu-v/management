@@ -10,7 +10,7 @@ import { BrowserRouter as Router, Switch } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 import DetailView from "components/employeeManagement/statusOfEmployee/DetailView";
-import  Error from "components/404/Error";
+
 
 function AppRouter() {
   return (
@@ -38,14 +38,9 @@ function AppRouter() {
             <PrivateRoute path="/employeelist">
               <EmployeeList />
             </PrivateRoute>
-            <PrivateRoute path="/error">
-              <Error />
-            </PrivateRoute>
+            
             <PrivateRoute path="/calender">
               <Calender/>
-            </PrivateRoute>
-            <PrivateRoute path="/error">
-              <Error />
             </PrivateRoute>
         </Switch>
       </Router>

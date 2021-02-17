@@ -4,26 +4,30 @@ import clsx from "clsx";
 import {
   Avatar,
   Box,
+  Button,
   Card,
   CardContent,
-  Divider,
-  Typography,
   makeStyles,
 } from "@material-ui/core";
+import blue from "@material-ui/core/colors/blue";
 
 const user = {
-  avatar: "/images/avatar_1.png",
-  name: "Admin",
-  timezone: "GTM-7",
+  avatar: "/images/Radical-Logo-Final-2021-v2.jpg",
 };
-
-const useStyles = makeStyles(() => ({
-  root: {
-    marginBottom:10,
-  },
+const useStyles = makeStyles((theme) => ({
   avatar: {
-    height: 70,
-    width: 70,
+    borderRadius: 0,
+    height: 50,
+    width: 200,
+  },
+  root: {
+    "& > *": {
+      margin: theme.spacing(1),
+      color: blue,
+    },
+  },
+  input: {
+    display: "none",
   },
 }));
 
@@ -34,13 +38,22 @@ const Profile = ({ className, ...rest }) => {
     <Card className={clsx(classes.root, className)} {...rest}>
       <CardContent>
         <Box alignItems="center" display="flex" flexDirection="column">
+        <div className={classes.root}>
+        <input
+          accept="image/*"
+          className={classes.input}
+          id="contained-button-file"
+          multiple
+          type="file"
+        />
+        <label htmlFor="contained-button-file">
+          <Button color="primary" component="span">
           <Avatar className={classes.avatar} src={user.avatar} />
-          <Typography color="textPrimary" gutterBottom variant="">
-            {user.name}
-          </Typography>
+          </Button>
+        </label>
+          </div>
         </Box>
-      </CardContent>
-      <Divider />
+      </CardContent>  
     </Card>
   );
 };
