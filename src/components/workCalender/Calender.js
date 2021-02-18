@@ -28,7 +28,7 @@ const owners = [
     id: 2,
     color: '#ff99bb',
   },{
-    text: 'Aneena Akhil',
+    text: 'Aneena Anil',
     id: 3,
     color: '#c579d2',
   }
@@ -163,26 +163,17 @@ const styles = theme => ({
     padding: '0.5em',
     textAlign: 'center',
   },
-  sun: {
-    color: '#FFEE58',
-  },
-  cloud: {
-    color: '#90A4AE',
-  },
-  rain: {
-    color: '#4FC3F7',
-  },
   sunBack: {
-    backgroundColor: '#FFFDE7',
+    backgroundColor: '#FDFAD6',
   },
   cloudBack: {
-    backgroundColor: '#ECEFF1',
+    backgroundColor: '#E4E7E9',
   },
   rainBack: {
-    backgroundColor: '#E1F5FE',
+    backgroundColor: '#D5EFFB',
   },
   opacity: {
-    opacity: '0.5',
+    opacity: '0.3',
   },
   appointment: {
     borderRadius: '10px',
