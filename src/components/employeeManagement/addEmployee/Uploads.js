@@ -11,9 +11,9 @@ const useStyles = makeStyles((theme) => ({
   extendedIcon: {
     marginRight: theme.spacing(1),
   },
-  fileName:{
-    paddingTop: "20px"
-  }
+  fileName: {
+    paddingTop: "20px",
+  },
 }));
 
 export default function Upload() {
@@ -27,16 +27,10 @@ export default function Upload() {
       <Dropzone
         className={classes.drop}
         onDrop={handleDrop}
-        
         minSize={1024}
         maxSize={3072000}
       >
-        {({
-          getRootProps,
-          getInputProps,
-          isDragAccept,
-          isDragReject,
-        }) => {
+        {({ getRootProps, getInputProps, isDragAccept, isDragReject }) => {
           const additionalClass = isDragAccept
             ? "accept"
             : isDragReject
@@ -50,14 +44,15 @@ export default function Upload() {
               })}
             >
               <input {...getInputProps()} />
-              <Fab 
-              className={classes.fabIcons}
-              variant="extended"
-               size="small"
-      color="primary">
-        <BackupIcon className={classes.extendedIcon} />
-        upload
-      </Fab>
+              <Fab
+                className={classes.fabIcons}
+                variant="extended"
+                size="small"
+                color="primary"
+              >
+                <BackupIcon className={classes.extendedIcon} />
+                upload
+              </Fab>
             </div>
           );
         }}
