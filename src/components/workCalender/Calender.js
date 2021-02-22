@@ -28,7 +28,7 @@ const owners = [
     id: 2,
     color: '#ff99bb',
   },{
-    text: 'Aneena Akhil',
+    text: 'Aneena Anil',
     id: 3,
     color: '#c579d2',
   }

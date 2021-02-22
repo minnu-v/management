@@ -84,6 +84,7 @@ export default function SignIn() {
           {({ errors, touched, handleBlur, handleChange, values }) => (
             <Form className={classes.form}>
               <TextField
+              required
                 variant="standard"
                 margin="normal"
                 fullWidth
@@ -98,6 +99,7 @@ export default function SignIn() {
               />
 
               <TextField
+              required
                 variant="standard"
                 margin="normal"
                 fullWidth

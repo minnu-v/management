@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: "100%",
+    width: '100%',
   },
 }));
 
@@ -37,7 +37,7 @@ export default function JobInfo() {
           <TextField required id="acc no." label="Account number" fullWidth />
         </Grid>
         <Grid item xs={12} md={6}>
-          <TextField required id="IFSC" label="IFS code" fullWidth />
+          <TextField required id="IFSC" label="IFS Code" fullWidth  />
         </Grid>
         <Grid item xs={12} md={6}>
           <form className={classes.container} noValidate>
@@ -58,7 +58,7 @@ export default function JobInfo() {
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField required id="password" label="Password" fullWidth/>
-        </Grid>
+      </Grid>
       </Grid>
     </React.Fragment>
   );

@@ -13,10 +13,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'block',
     marginTop: theme.spacing(2),
   },
-  formControl: {
-    margin: theme.spacing(.1),
-    minWidth: 120,
-  },
+  formControl:{
+    minWidth: "100%"
+  }
 }));
 
 export default function EmergencyInfo() {
@@ -44,24 +43,13 @@ export default function EmergencyInfo() {
         Emergency Contact Information
       </Typography>
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} >
           <TextField
             required
-            id="firstName"
-            name="firstName"
-            label="First name"
+            id="Name"
+            name="Name"
+            label="Contact name"
             fullWidth
-            autoComplete="given-name"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="lastName"
-            name="lastName"
-            label="Last name"
-            fullWidth
-            autoComplete="family-name"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -69,13 +57,13 @@ export default function EmergencyInfo() {
             required
             id="phone"
             name="Phone Number"
-            label="phone Number"
+            label="phone no."
             fullWidth
             autoComplete="employee registartion-level2"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <div>
+      
       <FormControl className={classes.formControl}>
       <InputLabel id="demo-controlled-open-select-label">Relation</InputLabel>
         <Select
@@ -95,7 +83,7 @@ export default function EmergencyInfo() {
           <MenuItem value={3}>Others</MenuItem>
         </Select>
       </FormControl>
-    </div>
+  
         </Grid>
         <Grid item xs={12}>
           <TextField
