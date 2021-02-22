@@ -16,7 +16,6 @@ import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import UpdateIcon from "@material-ui/icons/Update";
 import GroupIcon from "@material-ui/icons/Group";
 import DateRangeIcon from "@material-ui/icons/DateRange";
-import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import { Link } from "react-router-dom";
 import Profile from "components/views/Profile";
 
@@ -27,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
   },
   nested: {
-    paddingLeft: theme.spacing(4),
+    paddingLeft: theme.spacing(3),
   },
 }));
 
@@ -43,16 +42,13 @@ export default function NavList() {
   };
 
   return (
-  
     <List>
-     
-       <Profile/>
-     
+      <Profile />
       <ListItem button onClick={handleClick}>
         <ListItemIcon>
           <GroupIcon style={{ color: "blue" }} />
         </ListItemIcon>
-        <ListItemText primary="Employee Management"/>
+        <ListItemText primary="Employee Management" />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
@@ -91,7 +87,7 @@ export default function NavList() {
 
       <ListItem button onClick={handleClickLeave}>
         <ListItemIcon>
-          <EventAvailableIcon style={{ color: "violet" }} />
+          <EventAvailableIcon style={{ color: "purple" }} />
         </ListItemIcon>
         <ListItemText primary="Leave Management" />
         {leave ? <ExpandLess /> : <ExpandMore />}
@@ -135,15 +131,6 @@ export default function NavList() {
 
         <Link to="calender" style={{ textDecoration: "none", color: "black" }}>
           <ListItemText primary="Work Calender" />
-        </Link>
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <ErrorOutlineIcon style={{ color: "red" }} />
-        </ListItemIcon>
-
-        <Link to="error" style={{ textDecoration: "none", color: "black" }}>
-          <ListItemText primary="Error" />
         </Link>
       </ListItem>
     </List>

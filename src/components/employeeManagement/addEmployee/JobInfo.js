@@ -1,23 +1,20 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
-
-
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    display: "flex",
+    flexWrap: "wrap",
   },
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: 200,
+    width: "100%",
   },
 }));
- 
 
 export default function JobInfo() {
   const classes = useStyles();
@@ -31,48 +28,36 @@ export default function JobInfo() {
           <TextField required id="designation" label="Designation" fullWidth />
         </Grid>
         <Grid item xs={12} md={6}>
-          <TextField
-            required
-            id="employee id"
-            label="Employee ID"
-            fullWidth
-          />
+          <TextField required id="employee id" label="Employee id" fullWidth />
         </Grid>
         <Grid item xs={12} md={6}>
-          <TextField required id="salary" label="Salary $" fullWidth  />
+          <TextField required id="salary" label="Salary $" fullWidth />
         </Grid>
         <Grid item xs={12} md={6}>
-          <TextField
-            required
-            id="acc no."
-            label="Account Number"
-            fullWidth
-          />
+          <TextField required id="acc no." label="Account number" fullWidth />
         </Grid>
         <Grid item xs={12} md={6}>
-          <TextField required id="IFSC" label="IFS Code*" fullWidth  />
+          <TextField required id="IFSC" label="IFS code" fullWidth />
         </Grid>
         <Grid item xs={12} md={6}>
-        <form className={classes.container} noValidate>
-  <TextField
-    id="date"
-    label="Date Of Joining*"
-    type="date"
-    defaultValue="2017-01-01"
-    className={classes.textField}
-    InputLabelProps={{
-      shrink: true,
-    }}
-  />
-</form>
+          <form className={classes.container} noValidate>
+            <TextField
+              id="date"
+              label="Date Of Joining*"
+              fullWidth
+              type="date"
+              defaultValue="2017-01-01"
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+          </form>
         </Grid>
-        <Grid item xs={12}>
-        <TextField
-            required
-            id="E-mail"
-            label="Officail-Mail ID*"
-            fullWidth
-          />
+        <Grid item xs={12} md={6}>
+          <TextField required id="E-mail" label="Officail mail id" fullWidth />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <TextField required id="password" label="Password" fullWidth/>
         </Grid>
       </Grid>
     </React.Fragment>

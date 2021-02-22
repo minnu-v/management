@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-globals */
+/* eslint-disable react/jsx-no-undef */
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,7 +14,6 @@ import JobInfo from './JobInfo';
 import Uploads from './Uploads';
 import EmergencyInfo from './EmergencyInfo';
 
-
 const useStyles = makeStyles((theme) => ({
   appBar: {
     position: 'relative',
@@ -26,6 +27,10 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: 'auto',
       marginRight: 'auto',
     },
+  },
+  RefreshIcon: {
+    marginRight: theme.spacing(1),
+    textAlign:'right'
   },
   paper: {
     marginTop: theme.spacing(3),
@@ -48,6 +53,13 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(3),
     marginLeft: theme.spacing(1),
   },
+  buttonEnd: {
+    marginTop: theme.spacing(2),
+    borderRadius: "25px",
+  },
+  buttonAlign: {
+    left: '38vh',
+  }
 }));
 
 const steps = ['Employee Information', 'Job Details', 'Emergency contact', 'Uploads'];
@@ -79,6 +91,10 @@ export default function AllInfo() {
     setActiveStep(activeStep - 1);
   };
 
+  const goTo = () => {
+    location.href='allinfo';
+  };
+
   return (
     <React.Fragment>
       <CssBaseline />
@@ -97,12 +113,19 @@ export default function AllInfo() {
           <React.Fragment>
             {activeStep === steps.length ? (
               <React.Fragment>
-                <Typography variant="h5" gutterBottom style={{color:"green", alignItems:"center", justifyContent:"center"}}>
-                  Confirmed
+                <Typography variant="h6" gutterBottom style={{color:"green", fontStyle:"italic", alignItems:"center", justifyContent:"center"}}>
+                The employee details added succesfully !
                 </Typography>
-                <Typography variant="subtitle1">
-                  The employee details has been succesfully added to the database.
-                </Typography>
+                <div>
+      <Button
+        variant="contained"
+        color="primary"
+        className={classes.buttonEnd}
+        onClick={goTo}
+      >
+        New Employee
+      </Button>
+    </div>
               </React.Fragment>
             ) : (
               <React.Fragment>
