@@ -43,24 +43,13 @@ export default function EmergencyInfo() {
         Emergency Contact Information
       </Typography>
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} >
           <TextField
             required
-            id="firstName"
-            name="firstName"
-            label="First name"
+            id="Name"
+            name="Name"
+            label="Contact name"
             fullWidth
-            autoComplete="given-name"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="lastName"
-            name="lastName"
-            label="Last name"
-            fullWidth
-            autoComplete="family-name"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -68,7 +57,7 @@ export default function EmergencyInfo() {
             required
             id="phone"
             name="Phone Number"
-            label="phone Number"
+            label="phone no."
             fullWidth
             autoComplete="employee registartion-level2"
           />
