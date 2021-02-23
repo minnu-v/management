@@ -130,13 +130,9 @@ export default function NavList() {
           </ListItemIcon>
 
           <ListItemText primary="Work Calender" />
-<<<<<<< HEAD
-        </Link>
-      </ListItem>
-=======
+
         </ListItem>
       </Link>
->>>>>>> 15f06f30fbb4a27094cbfe61c70fce8db81ad6ca
     </List>
   );
 }

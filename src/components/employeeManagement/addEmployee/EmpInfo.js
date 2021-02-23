@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
   formControl:{
     minWidth: "100%"
-  }
+  },
 }));
 export default function EmpInfo() {
   const classes = useStyles();
@@ -52,7 +52,7 @@ export default function EmpInfo() {
         Employee Registration
       </Typography>
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} md={4}>
           <TextField
             required
             id="firstName"
@@ -62,7 +62,7 @@ export default function EmpInfo() {
             autoComplete="given-name"
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} md={4}>
           <TextField
             required
             id="lastName"
@@ -72,7 +72,7 @@ export default function EmpInfo() {
             autoComplete="family-name"
           />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={4}>
         <form className={classes.container} noValidate>
   <TextField
     id="date"
@@ -87,7 +87,7 @@ export default function EmpInfo() {
   />
 </form>
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} md={4}>
           <TextField
             required
             id="personalMail"
@@ -96,7 +96,7 @@ export default function EmpInfo() {
             fullWidth
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} md={4}>
       
       <FormControl className={classes.formControl}>
       <InputLabel id="demo-controlled-open-select-label">Gender</InputLabel>
@@ -120,7 +120,7 @@ export default function EmpInfo() {
       </FormControl>
   
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} md={4}>
           <TextField
             required
             id="bloodGroup"
@@ -129,7 +129,7 @@ export default function EmpInfo() {
             fullWidth
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} md={4}>
                 <div>
                   <FormControl className={classes.formControl}>
                     <InputLabel id="demo-controlled-open-select-label">
@@ -153,7 +153,7 @@ export default function EmpInfo() {
                   </FormControl>
                 </div>
               </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} md={4}>
           <TextField
             required
             id="relation"
@@ -162,7 +162,7 @@ export default function EmpInfo() {
             fullWidth
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} md={4}>
           <TextField
             required
             id="phone"
@@ -171,7 +171,7 @@ export default function EmpInfo() {
             fullWidth
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} md={4}>
           <TextField
             required
             id="phone2"
@@ -180,7 +180,7 @@ export default function EmpInfo() {
             fullWidth
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} md={8}>
           <TextField
             required
             id="address1"
@@ -190,7 +190,7 @@ export default function EmpInfo() {
             autoComplete="employee registartion-line1"
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} md={8}>
           <TextField
             id="address2"
             name="address2"
@@ -199,7 +199,7 @@ export default function EmpInfo() {
             autoComplete="employee registartion-line2"
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} md={4}>
           <TextField
             required
             id="landmark"
@@ -208,7 +208,7 @@ export default function EmpInfo() {
             fullWidth
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} md={4}>
           <TextField
             required
             id="city"
@@ -217,10 +217,10 @@ export default function EmpInfo() {
             fullWidth
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} md={4}>
           <TextField id="state" name="state" label="State/Province/Region" fullWidth />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} md={4}>
           <TextField
             required
             id="country"
@@ -230,7 +230,7 @@ export default function EmpInfo() {
             autoComplete="shipping country"
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} md={4}>
           <TextField
             required
             id="zip"

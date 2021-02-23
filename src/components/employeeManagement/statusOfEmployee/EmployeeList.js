@@ -11,7 +11,6 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
 import { green, red } from "@material-ui/core/colors";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
@@ -57,54 +56,6 @@ import Switch from "@material-ui/core/Switch";
     return { EmployeeID, Name, Status, More };
   }
 
-=======
-import { green } from "@material-ui/core/colors";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Switch from "@material-ui/core/Switch";
-
-
-  const StatusSwitch = withStyles({
-    switchBase: {
-      color: green[100],
-      "&$checked": {
-        color: green[600],
-      },
-      "&$checked + $track": {
-        backgroundColor: green[600],
-      },
-    },
-    checked: {},
-    track: {},
-  })(Switch);
-  export default function CustomizedTables() {
-    const [state, setState] = React.useState({
-      checkedA: false,
-      checkedB: false,
-      checkedC: false,
-      checkedD: false,
-    });
-  
-    const handleChange = (event) => {
-      setState({ ...state, [event.target.name]: event.target.checked });
-    };
-  const StyledTableCell = withStyles((theme) => ({
-    head: {
-      color: "#ad40bf",
-    },
-    body: {
-      fontSize: 14,
-    },
-  }))(TableCell);
-
-  const StyledTableRow = withStyles((theme) => ({
-    root: {},
-  }))(TableRow);
- 
-  function createData(EmployeeID, Name, Status, More) {
-    return { EmployeeID, Name, Status, More };
-  }
-
->>>>>>> 15f06f30fbb4a27094cbfe61c70fce8db81ad6ca
   const rows = [
     createData(
       1,

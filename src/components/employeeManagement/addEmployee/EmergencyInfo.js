@@ -43,7 +43,7 @@ export default function EmergencyInfo() {
         Emergency Contact Information
       </Typography>
       <Grid container spacing={3}>
-        <Grid item xs={12} >
+        <Grid item xs={12} md={4}>
           <TextField
             required
             id="Name"
@@ -52,7 +52,7 @@ export default function EmergencyInfo() {
             fullWidth
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} md={4}>
           <TextField
             required
             id="phone"
@@ -62,7 +62,7 @@ export default function EmergencyInfo() {
             autoComplete="employee registartion-level2"
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} md={4}>
       
       <FormControl className={classes.formControl}>
       <InputLabel id="demo-controlled-open-select-label">Relation</InputLabel>
@@ -85,7 +85,7 @@ export default function EmergencyInfo() {
       </FormControl>
   
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} md={6}>
           <TextField
             required
             id="address1"
@@ -95,7 +95,7 @@ export default function EmergencyInfo() {
             autoComplete="emergency-contact-line1"
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} md={6}>
           <TextField
             id="address2"
             name="address2"
