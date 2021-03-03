@@ -9,8 +9,8 @@ import {
   Paper,
   withStyles,
   makeStyles,
+  Link
 } from "@material-ui/core";
-import { Link } from "react-router-dom";
 import { green, red } from "@material-ui/core/colors";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";

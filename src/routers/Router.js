@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Switch } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 import DetailView from "components/employeeManagement/statusOfEmployee/DetailView";
+import ForgotPassword from "components/login/ForgotPassword";
 
 
 function AppRouter() {
@@ -20,6 +21,9 @@ function AppRouter() {
           <PublicRoute path="/" exact>
             <Login />
           </PublicRoute>
+          <PublicRoute path="/forgotpassword">
+              <ForgotPassword />
+            </PublicRoute>
             <PrivateRoute path="/allinfo">
               <AllInfo />
             </PrivateRoute>
