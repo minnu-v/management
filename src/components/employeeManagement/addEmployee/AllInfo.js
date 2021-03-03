@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
   layout: {
     [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
-      width: 900,
+      width: 1000,
       marginLeft: 'auto',
       marginRight: 'auto',
     },
@@ -30,11 +30,11 @@ const useStyles = makeStyles((theme) => ({
     textAlign:'right'
   },
   paper: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(4),
     [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
-      marginTop: theme.spacing(8),
-      marginBottom: theme.spacing(8),
-      padding: theme.spacing(3),
+      marginTop: theme.spacing(6),
+      marginBottom: theme.spacing(6),
+      padding: theme.spacing(5),
     },
   },
   stepper: {

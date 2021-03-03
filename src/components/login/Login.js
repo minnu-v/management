@@ -1,23 +1,22 @@
-import React from "react";
-import {
-  Avatar,
-  Button,
-  CssBaseline,
-  TextField,
-  Grid,
-  Link,
-} from "@material-ui/core";
+import React, { useState } from "react";
+import { Avatar, Button, CssBaseline, Grid, Link } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { Typography, Container, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
-import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import IconButton from "@material-ui/core/IconButton";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import { Formik, Form, Field } from "formik";
+import { TextField } from "formik-material-ui";
+import Snackbar from "@material-ui/core/Snackbar";
 
 const SignupSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
   password: Yup.string()
-    .min(2, "Too Short!")
+    .min(4, "Too Short!")
     .max(50, "Too Long!")
     .required("Required"),
 });
@@ -52,11 +51,19 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn() {
   const classes = useStyles();
   const history = useHistory();
+  const [showPassword, setShowPassword] = useState(false);
+  const [toast, setToast] = useState(false);
+  const handlePassword = () => {
+    setShowPassword(!showPassword);
+  };
+
   const handleSubmit = async (value) => {
     const { email, password } = value;
     if (email === "admin@gmail.com" && password === "123456") {
       await localStorage.setItem("isLogin", true);
       history.push("/dashboard");
+    } else {
+      setToast(true);
     }
   };
 
@@ -75,43 +82,45 @@ export default function SignIn() {
             email: "",
             password: "",
           }}
+          enableReinitialize={true}
           validationSchema={SignupSchema}
           onSubmit={(values) => {
             // same shape as initial values
             handleSubmit(values);
           }}
         >
-          {({ errors, touched, handleBlur, handleChange, values }) => (
+          {({ values }) => (
             <Form className={classes.form}>
-              <TextField
-              required
+              <Field
+                component={TextField}
                 variant="standard"
                 margin="normal"
                 fullWidth
                 id="email"
                 label="Email Address"
                 name="email"
-                onBlur={handleBlur}
-                value={values.email}
-                onChange={handleChange}
-                error={touched.email && Boolean(errors.email)}
-                helperText={touched.email && errors.email}
+                disable="false"
               />
 
-              <TextField
-              required
+              <Field
+                component={TextField}
                 variant="standard"
                 margin="normal"
                 fullWidth
-                name="password"
-                label="Password"
-                type="password"
                 id="password"
-                onBlur={handleBlur}
-                value={values.password}
-                onChange={handleChange}
-                error={touched.password && Boolean(errors.password)}
-                helperText={touched.password && errors.password}
+                name="password"
+                disable="false"
+                label="Password"
+                type={showPassword ? "text" : "password"}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton onClick={() => handlePassword()}>
+                        {showPassword ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
               />
 
               <Box display="flex">
@@ -137,6 +146,12 @@ export default function SignIn() {
           )}
         </Formik>
       </Grid>
+      <Snackbar
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        open={toast}
+        onClose={() => setToast(false)}
+        message="Invalid credentials"
+      />
     </Container>
   );
 }

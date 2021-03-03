@@ -52,7 +52,7 @@ export default function EmpInfo() {
         Employee Registration
       </Typography>
       <Grid container spacing={3}>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={6}>
           <TextField
             required
             id="firstName"
@@ -62,7 +62,7 @@ export default function EmpInfo() {
             autoComplete="given-name"
           />
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={6}>
           <TextField
             required
             id="lastName"
@@ -162,7 +162,7 @@ export default function EmpInfo() {
             fullWidth
           />
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={6}>
           <TextField
             required
             id="phone"
@@ -171,16 +171,15 @@ export default function EmpInfo() {
             fullWidth
           />
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={6}>
           <TextField
-            required
             id="phone2"
             name="phone2"
             label="Alternate no."
             fullWidth
           />
         </Grid>
-        <Grid item xs={12} md={8}>
+        <Grid item xs={12} md={6}>
           <TextField
             required
             id="address1"
@@ -190,7 +189,7 @@ export default function EmpInfo() {
             autoComplete="employee registartion-line1"
           />
         </Grid>
-        <Grid item xs={12} md={8}>
+        <Grid item xs={12} md={6}>
           <TextField
             id="address2"
             name="address2"
@@ -211,23 +210,23 @@ export default function EmpInfo() {
         <Grid item xs={12} md={4}>
           <TextField
             required
-            id="city"
-            name="city"
-            label="City"
-            fullWidth
-          />
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <TextField id="state" name="state" label="State/Province/Region" fullWidth />
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <TextField
-            required
             id="country"
             name="country"
             label="Country"
             fullWidth
             autoComplete="shipping country"
+          />
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <TextField id="state" required name="state" label="State/Province/Region" fullWidth />
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <TextField
+            required
+            id="city"
+            name="city"
+            label="City"
+            fullWidth
           />
         </Grid>
         <Grid item xs={12} md={4}>

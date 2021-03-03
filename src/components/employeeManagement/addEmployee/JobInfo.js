@@ -24,13 +24,13 @@ export default function JobInfo() {
         Job Information
       </Typography>
       <Grid container spacing={3}>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={4}>
           <TextField required id="designation" label="Designation" fullWidth />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={4}>
           <TextField required id="employee id" label="Employee id" fullWidth />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={4}>
           <TextField required id="salary" label="Salary $" fullWidth />
         </Grid>
         <Grid item xs={12} md={6}>
@@ -58,6 +58,9 @@ export default function JobInfo() {
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField required id="password" label="Password" fullWidth/>
+      </Grid>
+      <Grid item xs={12} md={6}>
+          <TextField required id="confirmPassword" label="Confirm Password" fullWidth/>
       </Grid>
       </Grid>
     </React.Fragment>
