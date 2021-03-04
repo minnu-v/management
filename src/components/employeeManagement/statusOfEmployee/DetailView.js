@@ -1,245 +1,189 @@
-import React, { useState } from "react";
-import clsx from "clsx";
-import PropTypes from "prop-types";
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  CardHeader,
-  Divider,
-  Grid,
-  TextField,
-  makeStyles,
-} from "@material-ui/core";
+/* eslint-disable no-restricted-globals */
+/* eslint-disable react/jsx-no-undef */
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Paper from "@material-ui/core/Paper";
+import Stepper from "@material-ui/core/Stepper";
+import Step from "@material-ui/core/Step";
+import StepLabel from "@material-ui/core/StepLabel";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import EmpInfo from "../addEmployee/EmpInfo";
+import JobInfo from "../addEmployee/JobInfo";
+import Uploads from "../addEmployee/Uploads";
+import EmergencyInfo from "../addEmployee/EmergencyInfo";
+import EditIcon from "@material-ui/icons/Edit";
+import IconButton from "@material-ui/core/IconButton";
+import SaveIcon from "@material-ui/icons/Save";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
-const states = [
-  {
-    value: "alabama",
-    label: "Alabama",
+const useStyles = makeStyles((theme) => ({
+  appBar: {
+    position: "relative",
   },
-  {
-    value: "new-york",
-    label: "New York",
+  layout: {
+    [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
+      width: 1000,
+      marginLeft: "auto",
+      marginRight: "auto",
+    },
   },
-  {
-    value: "san-francisco",
-    label: "San Francisco",
+  RefreshIcon: {
+    marginRight: theme.spacing(1),
+    textAlign: "right",
   },
-];
-
-const useStyles = makeStyles(() => ({
-  root: {},
+  paper: {
+    padding: theme.spacing(4),
+    [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
+      marginTop: theme.spacing(6),
+      marginBottom: theme.spacing(6),
+      padding: theme.spacing(5),
+    },
+  },
+  stepper: {
+    padding: theme.spacing(3, 0, 5),
+  },
+  buttons: {
+    display: "flex",
+    justifyContent: "flex-end",
+  },
+  button: {
+    marginTop: theme.spacing(3),
+    marginLeft: theme.spacing(1),
+  },
+  buttonEnd: {
+    marginTop: theme.spacing(2),
+    borderRadius: "25px",
+  },
+  buttonAlign: {
+    left: "38vh",
+  },
 }));
 
-const DetailView = ({ className, ...rest }) => {
-  const classes = useStyles();
-  const [values, setValues] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    empid: "",
-    phone: "",
-    qualification: "",
-    emergencycontact: "",
-    country: "",
-  });
+const steps = [
+  "Employee Information",
+  "Job Details",
+  "Emergency contact",
+  "Uploads",
+];
 
-  const handleChange = (event) => {
-    setValues({
-      ...values,
-      [event.target.name]: event.target.value,
-    });
+function getStepContent(step) {
+  switch (step) {
+    case 0:
+      return <EmpInfo />;
+    case 1:
+      return <JobInfo />;
+    case 2:
+      return <EmergencyInfo />;
+    case 3:
+      return <Uploads />;
+    default:
+      throw new Error("Unknown step");
+  }
+}
+
+export default function DetailView() {
+  const classes = useStyles();
+  const [activeStep, setActiveStep] = React.useState(0);
+
+  const handleNext = () => {
+    setActiveStep(activeStep + 1);
+  };
+
+  const handleEdit = () => {
+    alert("you can edit now");
+  };
+
+  const handleSave = () => {
+    alert("saved");
+  };
+
+  const handleBack = () => {
+    setActiveStep(activeStep - 1);
+  };
+
+  const goTo = () => {
+    location.href = "employeelist";
   };
 
   return (
-    <form
-      autoComplete="off"
-      noValidate
-      className={clsx(classes.root, className)}
-      {...rest}
-    >
-      <Card>
-        <CardHeader subheader="The information can be edited" title="Profile" />
-        <Divider />
-        <CardContent>
-          <Grid container spacing={6}>
-            <Grid item sm={6} xs={12}>
-              <TextField
-                fullWidth
-                label="First name"
-                name="firstName"
-                onChange={handleChange}
-                required
-                value={values.firstName}
-                variant="standard"
-              />
-            </Grid>
-            <Grid item sm={6} xs={12}>
-              <TextField
-                fullWidth
-                label="Last name"
-                name="lastName"
-                onChange={handleChange}
-                required
-                value={values.lastName}
-                variant="standard"
-              />
-            </Grid>
-            <Grid item sm={6} xs={12}>
-              <TextField
-                fullWidth
-                label="Email Address"
-                name="email"
-                onChange={handleChange}
-                required
-                value={values.email}
-                variant="standard"
-              />
-            </Grid>
-            <Grid item sm={6} xs={12}>
-              <TextField
-                fullWidth
-                label="Employee ID"
-                name="empid"
-                onChange={handleChange}
-                required
-                value={values.empid}
-                variant="standard"
-              />
-            </Grid>
-            <Grid item sm={6} xs={12}>
-              <TextField
-                fullWidth
-                label="phone number"
-                name="phone"
-                onChange={handleChange}
-                value={values.phone}
-                variant="standard"
-              />
-            </Grid>
-            <Grid item sm={6} xs={12}>
-              <TextField
-                fullWidth
-                label="Qualification"
-                name="qualification"
-                onChange={handleChange}
-                required
-                value={values.qualification}
-                variant="standard"
-              />
-            </Grid>
-            <Grid item sm={6} xs={12}>
-              <TextField
-                fullWidth
-                label="Emergency contact"
-                name="emergencycontact"
-                onChange={handleChange}
-                required
-                value={values.emergencycontact}
-                variant="standard"
-              />
-            </Grid>
-            <Grid item sm={6} xs={12}>
-              <TextField
-                fullWidth
-                label="Account number"
-                name="country"
-                onChange={handleChange}
-                required
-                value={values.country}
-                variant="standard"
-              />
-            </Grid>
-            <Grid item sm={6} xs={12}>
-              <TextField
-                fullWidth
-                label="IFS code"
-                name="country"
-                onChange={handleChange}
-                required
-                value={values.country}
-                variant="standard"
-              />
-            </Grid>
-            <Grid item sm={6} xs={12}>
-              <TextField
-                fullWidth
-                label="Designation"
-                name="country"
-                onChange={handleChange}
-                required
-                value={values.country}
-                variant="standard"
-              />
-            </Grid>
-            <Grid item sm={6} xs={12}>
-              <TextField
-                fullWidth
-                label="Date Of joining"
-                name="country"
-                onChange={handleChange}
-                required
-                value={values.country}
-                variant="standard"
-              />
-            </Grid>
-            <Grid item sm={6} xs={12}>
-              <TextField
-                fullWidth
-                label="Date of birth"
-                name="country"
-                onChange={handleChange}
-                required
-                value={values.country}
-                variant="standard"
-              />
-            </Grid>
-            <Grid item sm={6} xs={12}>
-              <TextField
-                fullWidth
-                label="Blood Group"
-                name="country"
-                onChange={handleChange}
-                required
-                value={values.country}
-                variant="standard"
-              />
-            </Grid>
-            <Grid item sm={6} xs={12}>
-              <TextField
-                fullWidth
-                label="Select State"
-                name="state"
-                onChange={handleChange}
-                required
-                select
-                SelectProps={{ native: true }}
-                value={values.state}
-                variant="standard"
-              >
-                {states.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </TextField>
-            </Grid>
-          </Grid>
-        </CardContent>
-        <Divider />
-        <Box display="flex" justifyContent="flex-end" p={2}>
-          <Button color="primary" variant="contained">
-            Save details
-          </Button>
-        </Box>
-      </Card>
-    </form>
+    <React.Fragment>
+      <CssBaseline />
+      <main className={classes.layout}>
+        <Paper className={classes.paper}>
+          <Typography component="h1" variant="h4" align="center">
+            Employee Registration
+          </Typography>
+          <Stepper activeStep={activeStep} className={classes.stepper}>
+            {steps.map((label) => (
+              <Step key={label}>
+                <StepLabel>{label}</StepLabel>
+              </Step>
+            ))}
+          </Stepper>
+          <React.Fragment>
+            {activeStep === steps.length ? (
+              <React.Fragment>
+                <Typography
+                  variant="h5"
+                  gutterBottom
+                  style={{
+                    color: "green",
+                    fontStyle: "bold",
+                    fontFamily: '-apple-system',
+                  }}
+                >
+                  Employee details added succesfully !
+                </Typography>
+                <div>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    className={classes.buttonEnd}
+                    onClick={goTo}
+                  >
+                    Back to List
+                  </Button>
+                </div>
+              </React.Fragment>
+            ) : (
+              <React.Fragment>
+                {getStepContent(activeStep)}
+                <div className={classes.buttons}>
+                  {activeStep !== 0 && (
+                    <Button onClick={handleBack} className={classes.button}>
+                      <IconButton color="primary">
+                        <ArrowBackIcon />
+                      </IconButton>
+                    </Button>
+                  )}
+
+                  <Button onClick={handleEdit} className={classes.button}>
+                    <IconButton color="primary">
+                      <EditIcon />
+                    </IconButton>
+                  </Button>
+
+                  <Button onClick={handleSave} className={classes.button}>
+                    <IconButton color="primary">
+                      <SaveIcon />
+                    </IconButton>
+                  </Button>
+
+                  <Button
+                    color="primary"
+                    onClick={handleNext}
+                    className={classes.button}
+                  >
+                    {activeStep === steps.length - 1 ? "Submit" : "Next"}
+                  </Button>
+                </div>
+              </React.Fragment>
+            )}
+          </React.Fragment>
+        </Paper>
+      </main>
+    </React.Fragment>
   );
-};
-
-DetailView.propTypes = {
-  className: PropTypes.string,
-};
-
-export default DetailView;
+}
