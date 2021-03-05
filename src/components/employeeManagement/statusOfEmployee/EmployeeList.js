@@ -9,8 +9,8 @@ import {
   Paper,
   withStyles,
   makeStyles,
+  Link
 } from "@material-ui/core";
-import { Link } from "react-router-dom";
 import { green, red } from "@material-ui/core/colors";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
@@ -69,7 +69,7 @@ import Switch from "@material-ui/core/Switch";
           />
         }
       />,
-      <Link to="detailview">View more</Link>
+      <Link href="detailview">View more</Link>
     ),
     createData(
       2,
@@ -83,7 +83,7 @@ import Switch from "@material-ui/core/Switch";
           />
         }
       />,
-      <Link to="detailview">View more</Link>
+      <Link href="detailview">View more</Link>
     ),
     createData(
       3,
@@ -97,7 +97,7 @@ import Switch from "@material-ui/core/Switch";
           />
         }
       />,
-      <Link to="detailview">View more</Link>
+      <Link href="detailview">View more</Link>
     ),
     createData(
       4,
@@ -111,7 +111,7 @@ import Switch from "@material-ui/core/Switch";
           />
         }
       />,
-      <Link to="detailview">View more</Link>
+      <Link href="detailview">View more</Link>
     ),
   ];
 

@@ -1,33 +1,33 @@
 /* eslint-disable no-restricted-globals */
 /* eslint-disable react/jsx-no-undef */
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Paper from '@material-ui/core/Paper';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import EmpInfo from './EmpInfo';
-import JobInfo from './JobInfo';
-import Uploads from './Uploads';
-import EmergencyInfo from './EmergencyInfo';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Paper from "@material-ui/core/Paper";
+import Stepper from "@material-ui/core/Stepper";
+import Step from "@material-ui/core/Step";
+import StepLabel from "@material-ui/core/StepLabel";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import EmpInfo from "./EmpInfo";
+import JobInfo from "./JobInfo";
+import Uploads from "./Uploads";
+import EmergencyInfo from "./EmergencyInfo";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
-    position: 'relative',
+    position: "relative",
   },
   layout: {
     [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
       width: 1000,
-      marginLeft: 'auto',
-      marginRight: 'auto',
+      marginLeft: "auto",
+      marginRight: "auto",
     },
   },
   RefreshIcon: {
     marginRight: theme.spacing(1),
-    textAlign:'right'
+    textAlign: "right",
   },
   paper: {
     padding: theme.spacing(4),
@@ -41,8 +41,8 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3, 0, 5),
   },
   buttons: {
-    display: 'flex',
-    justifyContent: 'flex-end',
+    display: "flex",
+    justifyContent: "flex-end",
   },
   button: {
     marginTop: theme.spacing(3),
@@ -53,11 +53,16 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "25px",
   },
   buttonAlign: {
-    left: '38vh',
-  }
+    left: "38vh",
+  },
 }));
 
-const steps = ['Employee Information', 'Job Details', 'Emergency contact', 'Uploads'];
+const steps = [
+  "Employee Information",
+  "Job Details",
+  "Emergency contact",
+  "Uploads",
+];
 
 function getStepContent(step) {
   switch (step) {
@@ -70,7 +75,7 @@ function getStepContent(step) {
     case 3:
       return <Uploads />;
     default:
-      throw new Error('Unknown step');
+      throw new Error("Unknown step");
   }
 }
 
@@ -87,7 +92,7 @@ export default function AllInfo() {
   };
 
   const goTo = () => {
-    location.href='allinfo';
+    location.href = "allinfo";
   };
 
   return (
@@ -97,7 +102,7 @@ export default function AllInfo() {
         <Paper className={classes.paper}>
           <Typography component="h1" variant="h4" align="center">
             Employee Registration
-                      </Typography>
+          </Typography>
           <Stepper activeStep={activeStep} className={classes.stepper}>
             {steps.map((label) => (
               <Step key={label}>
@@ -108,19 +113,27 @@ export default function AllInfo() {
           <React.Fragment>
             {activeStep === steps.length ? (
               <React.Fragment>
-                <Typography variant="h6" gutterBottom style={{color:"green", fontStyle:"italic", alignItems:"center", justifyContent:"center"}}>
-                The employee details added succesfully !
+                <Typography
+                  variant="h6"
+                  gutterBottom
+                  style={{
+                    color: "green",
+                    fontStyle: "bold",
+                    fontFamily: "-apple-system",
+                  }}
+                >
+                  Employee details added succesfully !
                 </Typography>
                 <div>
-      <Button
-        variant="contained"
-        color="primary"
-        className={classes.buttonEnd}
-        onClick={goTo}
-      >
-        New Employee
-      </Button>
-    </div>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    className={classes.buttonEnd}
+                    onClick={goTo}
+                  >
+                    New Employee
+                  </Button>
+                </div>
               </React.Fragment>
             ) : (
               <React.Fragment>
@@ -137,14 +150,13 @@ export default function AllInfo() {
                     onClick={handleNext}
                     className={classes.button}
                   >
-                    {activeStep === steps.length - 1 ? 'Submit' : 'Next'}
+                    {activeStep === steps.length - 1 ? "Submit" : "Next"}
                   </Button>
                 </div>
               </React.Fragment>
             )}
           </React.Fragment>
         </Paper>
-       
       </main>
     </React.Fragment>
   );

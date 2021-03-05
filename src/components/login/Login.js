@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Avatar, Button, CssBaseline, Grid, Link } from "@material-ui/core";
+import { Avatar, Button, CssBaseline, Grid, Link} from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { Typography, Container, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -84,7 +84,7 @@ export default function SignIn() {
           }}
           enableReinitialize={true}
           validationSchema={SignupSchema}
-          onSubmit={(values) => {
+          onSubmit={async(values) => {
             // same shape as initial values
             handleSubmit(values);
           }}
@@ -137,7 +137,7 @@ export default function SignIn() {
 
               <Grid container>
                 <Grid item xs>
-                  <Link href="#" variant="body2" color="#1769aa">
+                  <Link href="forgotpassword" variant="body2">
                     Forgot password?
                   </Link>
                 </Grid>
@@ -146,6 +146,7 @@ export default function SignIn() {
           )}
         </Formik>
       </Grid>
+      
       <Snackbar
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
         open={toast}

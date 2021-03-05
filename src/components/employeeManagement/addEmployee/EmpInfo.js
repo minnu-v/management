@@ -1,26 +1,25 @@
-import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-
+import React from "react";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import TextField from "@material-ui/core/TextField";
+import { makeStyles } from "@material-ui/core/styles";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    display: "flex",
+    flexWrap: "wrap",
   },
-  formControl:{
-    minWidth: "100%"
+  formControl: {
+    minWidth: "100%",
   },
 }));
 export default function EmpInfo() {
   const classes = useStyles();
-  const [Gender, setGender] = React.useState('');
+  const [Gender, setGender] = React.useState("");
   const [Maritalstatus, setstatus] = React.useState("");
   const [open, setOpen] = React.useState(false);
   const [openOne, setOpenOne] = React.useState(false);
@@ -73,19 +72,19 @@ export default function EmpInfo() {
           />
         </Grid>
         <Grid item xs={12} md={4}>
-        <form className={classes.container} noValidate>
-  <TextField
-    id="date"
-    label="Date Of Birth"
-    type="date"
-    fullWidth
-    defaultValue="1998-01-01"
-    className={classes.textField}
-    InputLabelProps={{
-      shrink: true,
-    }}
-  />
-</form>
+          <form className={classes.container} noValidate>
+            <TextField
+              id="date"
+              label="Date Of Birth"
+              type="date"
+              fullWidth
+              defaultValue="1998-01-01"
+              className={classes.textField}
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+          </form>
         </Grid>
         <Grid item xs={12} md={4}>
           <TextField
@@ -97,28 +96,28 @@ export default function EmpInfo() {
           />
         </Grid>
         <Grid item xs={12} md={4}>
-      
-      <FormControl className={classes.formControl}>
-      <InputLabel id="demo-controlled-open-select-label">Gender</InputLabel>
-        <Select
-          labelId="demo-controlled-open-select-label"
-          id="demo-controlled-open-select"
-          fullWidth
-          open={open}
-          onClose={handleClose}
-          onOpen={handleOpen}
-          value={Gender}
-          onChange={handleChange}
-        >
-          <MenuItem disabled value="">
-            <em> gender </em>
-          </MenuItem>
-          <MenuItem value={1}>Female</MenuItem>
-          <MenuItem value={2}>Male</MenuItem>
-          <MenuItem value={3}>Transgender</MenuItem>
-        </Select>
-      </FormControl>
-  
+          <FormControl className={classes.formControl}>
+            <InputLabel id="demo-controlled-open-select-label">
+              Gender
+            </InputLabel>
+            <Select
+              labelId="demo-controlled-open-select-label"
+              id="demo-controlled-open-select"
+              fullWidth
+              open={open}
+              onClose={handleClose}
+              onOpen={handleOpen}
+              value={Gender}
+              onChange={handleChange}
+            >
+              <MenuItem disabled value="">
+                <em> gender </em>
+              </MenuItem>
+              <MenuItem value={1}>Female</MenuItem>
+              <MenuItem value={2}>Male</MenuItem>
+              <MenuItem value={3}>Transgender</MenuItem>
+            </Select>
+          </FormControl>
         </Grid>
         <Grid item xs={12} md={4}>
           <TextField
@@ -130,29 +129,29 @@ export default function EmpInfo() {
           />
         </Grid>
         <Grid item xs={12} md={4}>
-                <div>
-                  <FormControl className={classes.formControl}>
-                    <InputLabel id="demo-controlled-open-select-label">
-                      Marital status
-                    </InputLabel>
-                    <Select
-                      labelId="demo-controlled-open-select-label"
-                      id="demo-controlled-open-select"
-                      open={openOne}
-                      onClose={handleCloseOne}
-                      onOpen={handleOpenOne}
-                      value={Maritalstatus}
-                      onChange={handleChangeOne}
-                    >
-                      <MenuItem disabled value="">
-                        <em> Marital  status</em>
-                      </MenuItem>
-                      <MenuItem value={3}>Married</MenuItem>
-                      <MenuItem value={4}>Un-married</MenuItem>
-                    </Select>
-                  </FormControl>
-                </div>
-              </Grid>
+          <div>
+            <FormControl className={classes.formControl}>
+              <InputLabel id="demo-controlled-open-select-label">
+                Marital status
+              </InputLabel>
+              <Select
+                labelId="demo-controlled-open-select-label"
+                id="demo-controlled-open-select"
+                open={openOne}
+                onClose={handleCloseOne}
+                onOpen={handleOpenOne}
+                value={Maritalstatus}
+                onChange={handleChangeOne}
+              >
+                <MenuItem disabled value="">
+                  <em> Marital status</em>
+                </MenuItem>
+                <MenuItem value={3}>Married</MenuItem>
+                <MenuItem value={4}>Un-married</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
+        </Grid>
         <Grid item xs={12} md={4}>
           <TextField
             required
@@ -218,16 +217,16 @@ export default function EmpInfo() {
           />
         </Grid>
         <Grid item xs={12} md={4}>
-          <TextField id="state" required name="state" label="State/Province/Region" fullWidth />
-        </Grid>
-        <Grid item xs={12} md={4}>
           <TextField
+            id="state"
             required
-            id="city"
-            name="city"
-            label="City"
+            name="state"
+            label="State/Province/Region"
             fullWidth
           />
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <TextField required id="city" name="city" label="City" fullWidth />
         </Grid>
         <Grid item xs={12} md={4}>
           <TextField
@@ -239,7 +238,6 @@ export default function EmpInfo() {
             autoComplete="shipping postal-code"
           />
         </Grid>
-       
       </Grid>
     </React.Fragment>
   );
