@@ -49,8 +49,8 @@ export default function ForgotPassword() {
   const handleSubmit = async (value) => {
     const { email } = value;
     if (email === "admin@gmail.com") {
-      await localStorage.setItem("isLogin", true);
-      history.push("/login");
+      //await localStorage.setItem("isLogin", true);
+      history.push("/");
     }
   };
 

@@ -17,6 +17,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import IconButton from "@material-ui/core/IconButton";
 import SaveIcon from "@material-ui/icons/Save";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -134,7 +135,7 @@ export default function DetailView() {
                     fontFamily: '-apple-system',
                   }}
                 >
-                  Employee details added succesfully !
+                  Employee details added successfully !
                 </Typography>
                 <div>
                   <Button
@@ -176,7 +177,9 @@ export default function DetailView() {
                     onClick={handleNext}
                     className={classes.button}
                   >
-                    {activeStep === steps.length - 1 ? "Submit" : "Next"}
+                    {activeStep === steps.length - 1 ? "Submit" :   <IconButton color="primary">
+                      <ArrowForwardIcon />
+                    </IconButton>}
                   </Button>
                 </div>
               </React.Fragment>
