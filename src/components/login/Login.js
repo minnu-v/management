@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Avatar, Button, CssBaseline, Grid, Link} from "@material-ui/core";
+import { useDispatch } from 'react-redux'
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { Typography, Container, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -12,6 +13,7 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { Formik, Form, Field } from "formik";
 import { TextField } from "formik-material-ui";
 import Snackbar from "@material-ui/core/Snackbar";
+import {LoginCredentials} from "store/action";
 
 const SignupSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
@@ -51,14 +53,23 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn() {
   const classes = useStyles();
   const history = useHistory();
+  const dispatch = useDispatch()
   const [showPassword, setShowPassword] = useState(false);
   const [toast, setToast] = useState(false);
   const handlePassword = () => {
     setShowPassword(!showPassword);
   };
 
+
   const handleSubmit = async (value) => {
     const { email, password } = value;
+
+    // const obj ={
+    //   email:email,
+    //   password:password
+    // }
+
+    dispatch(LoginCredentials()).then((res)=> {console.log(res?.payload)})
     if (email === "admin@gmail.com" && password === "123456") {
       await localStorage.setItem("isLogin", true);
       history.push("/dashboard");
