@@ -79,12 +79,6 @@ export default function SignIn() {
         setToast(true);
       }
     })
-  //   if (email === "admin@gmail.com" && password === "123456") {
-  //     await localStorage.setItem("isLogin", true);
-  //     history.push("/dashboard");
-  //   } else {
-  //     setToast(true);
-  //   }
   };
 
   return (
