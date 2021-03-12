@@ -64,18 +64,27 @@ export default function SignIn() {
   const handleSubmit = async (value) => {
     const { email, password } = value;
 
-    // const obj ={
-    //   email:email,
-    //   password:password
-    // }
-
-    dispatch(LoginCredentials()).then((res)=> {console.log(res?.payload)})
-    if (email === "admin@gmail.com" && password === "123456") {
-      await localStorage.setItem("isLogin", true);
-      history.push("/dashboard");
-    } else {
-      setToast(true);
+    const obj ={
+      email:email,
+      password:password
     }
+
+    dispatch(LoginCredentials(obj)).then((res)=> {
+      if(res.payload.token){
+        localStorage.setItem("isLogin", true);
+        localStorage.setItem("token",res.payload.token)
+        history.push("/dashboard");
+      }
+      else {
+        setToast(true);
+      }
+    })
+  //   if (email === "admin@gmail.com" && password === "123456") {
+  //     await localStorage.setItem("isLogin", true);
+  //     history.push("/dashboard");
+  //   } else {
+  //     setToast(true);
+  //   }
   };
 
   return (

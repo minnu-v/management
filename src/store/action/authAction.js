@@ -3,12 +3,18 @@ import fetchHandler from "utils/fetchHandler";
 
 export const LoginCredentials = createAsyncThunk("auth/login", async (body) => {
 	const fetchOptions = {
-		url: `https://jsonplaceholder.typicode.com/todos/1`,
-		method: "GET",
+		url: `/login`,
+		method: "post",
 		secure: false,
-		body: JSON.stringify(body),
+		body: body,
 	};
 
 	const responce = await fetchHandler(fetchOptions);
 	return await responce;
 });
+
+
+
+
+
+
