@@ -21,7 +21,7 @@ const fetchHandler = ({
 
 	return axios({
 		method: method,
-		url: `${url}`,
+		url: `${rootURL}${url}`,
 		headers: {
 			...headersData,
 		},
