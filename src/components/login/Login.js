@@ -66,7 +66,7 @@ export default function SignIn() {
 
     const obj ={
       email:email,
-      password:password
+      password:password,
     }
 
     dispatch(LoginCredentials(obj)).then((res)=> {
