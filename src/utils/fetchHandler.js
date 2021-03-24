@@ -11,12 +11,12 @@ const fetchHandler = ({
 	fileUpload = false,
 }) => {
 
-	//const accessToken = LSToken?.accessToken ?? null;
+	const accessToken = localStorage.getItem("adminToken");
 
 	const headersData = {
 		Accept: fileUpload ? "multipart/form-data" : "application/json",
 		"Content-Type": fileUpload ? "multipart/form-data" : "application/json",
-		//...(secure && { Authorization: `Bearer ${accessToken}` }),
+		...(secure && {adminToken: `${accessToken}` }),
 	};
 
 	return axios({
