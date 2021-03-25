@@ -63,16 +63,16 @@ const steps = [
   "Uploads",
 ];
 
-function getStepContent(step) {
+function getStepContent(step,handleNext,handleBack) {
   switch (step) {
     case 0:
-      return <EmpInfo />;
+      return <EmpInfo  handleNext={handleNext}/>;
     case 1:
-      return <JobInfo />;
+      return <JobInfo handleNext={handleNext} handleBack={handleBack}/>;
     case 2:
-      return <EmergencyInfo />;
+      return <EmergencyInfo handleNext={handleNext} handleBack={handleBack}/>;
     case 3:
-      return <Uploads />;
+      return <Uploads handleNext={handleNext} handleBack={handleBack}/>;
     default:
       throw new Error("Unknown step");
   }
@@ -136,22 +136,8 @@ export default function AllInfo() {
               </React.Fragment>
             ) : (
               <React.Fragment>
-                {getStepContent(activeStep)}
-                <div className={classes.buttons}>
-                  {activeStep !== 0 && (
-                    <Button onClick={handleBack} className={classes.button}>
-                      Back
-                    </Button>
-                  )}
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleNext}
-                    className={classes.button}
-                  >
-                    {activeStep === steps.length - 1 ? "Submit" : "Next"}
-                  </Button>
-                </div>
+                {getStepContent(activeStep,handleNext,handleBack)}
+                
               </React.Fragment>
             )}
           </React.Fragment>

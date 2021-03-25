@@ -2,8 +2,8 @@ import Login from "components/login/Login";
 // import Dashboard from "components/sidebar/Sidebar"
 import AllInfo from '../components/employeeManagement/addEmployee/AllInfo';
 import Calender from '../components/workCalender/Calender';
-import Approval from '../components/leaveManagement/Approval';
-import Request from '../components/leaveManagement/Request';
+import Approved from '../components/leaveManagement/Approved';
+import LeaveRequest from '../components/leaveManagement/LeaveRequest';
 import EmployeeList from '../components/employeeManagement/statusOfEmployee/EmployeeList';
 import React, { Fragment } from "react";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
@@ -30,11 +30,11 @@ function AppRouter() {
             <PrivateRoute path="/dashboard">
               <Calender />
             </PrivateRoute>
-            <PrivateRoute path="/request">
-              <Request />
+            <PrivateRoute path="/leaverequest">
+              <LeaveRequest />
             </PrivateRoute>
-            <PrivateRoute path="/approval">
-              <Approval />
+            <PrivateRoute path="/approved">
+              <Approved />
             </PrivateRoute>
             <PrivateRoute path="/detailview">
               <DetailView />

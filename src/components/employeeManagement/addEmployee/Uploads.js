@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Fab from "@material-ui/core/Fab";
 import BackupIcon from "@material-ui/icons/Backup";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, Button } from "@material-ui/core";
 import Dropzone from "react-dropzone";
 
 const useStyles = makeStyles((theme) => ({
@@ -14,9 +14,17 @@ const useStyles = makeStyles((theme) => ({
   fileName: {
     paddingTop: "20px",
   },
+  buttons: {
+    display: "flex",
+    justifyContent: "flex-end",
+  },
+  button: {
+    marginTop: theme.spacing(3),
+    marginLeft: theme.spacing(1),
+  },
 }));
 
-export default function Upload() {
+export default function Upload({ handleNext, handleBack }) {
   const classes = useStyles();
   const [fileNames, setFileNames] = useState([]);
   const handleDrop = (acceptedFiles) =>
@@ -64,7 +72,21 @@ export default function Upload() {
             <li key={fileName}>{fileName}</li>
           ))}
         </ul>
+        <div className={classes.buttons}>   
+        <Button onClick={handleBack} className={classes.button}>
+          Back
+        </Button>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleNext}
+                    className={classes.button}
+                  >
+                   Submit
+                  </Button>
+                </div>
       </div>
     </div>
+    
   );
 }

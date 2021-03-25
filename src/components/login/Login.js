@@ -1,19 +1,26 @@
 import React, { useState } from "react";
-import { Avatar, Button, CssBaseline, Grid, Link} from "@material-ui/core";
-import { useDispatch } from 'react-redux'
+import {
+  Avatar,
+  Button,
+  CssBaseline,
+  Grid,
+  Link,
+  IconButton,
+  InputAdornment,
+  makeStyles,
+  Typography,
+  Container,
+  Box,
+  Snackbar,
+} from "@material-ui/core";
+import { useDispatch } from "react-redux";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import { Typography, Container, Box } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
-import IconButton from "@material-ui/core/IconButton";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import Visibility from "@material-ui/icons/Visibility";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import { Visibility, VisibilityOff } from "@material-ui/icons";
 import { Formik, Form, Field } from "formik";
 import { TextField } from "formik-material-ui";
-import Snackbar from "@material-ui/core/Snackbar";
-import {LoginCredentials} from "store/action";
+import { LoginCredentials } from "store/action";
 
 const SignupSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
@@ -53,32 +60,30 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn() {
   const classes = useStyles();
   const history = useHistory();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [toast, setToast] = useState(false);
   const handlePassword = () => {
     setShowPassword(!showPassword);
   };
 
-
   const handleSubmit = async (value) => {
     const { email, password } = value;
 
-    const obj ={
-      email:email,
-      password:password
-    }
+    const obj = {
+      email: email,
+      password: password,
+    };
 
-    dispatch(LoginCredentials(obj)).then((res)=> {
-      if(res.payload.token){
+    dispatch(LoginCredentials(obj)).then((res) => {
+      if (res.payload.adminToken) {
         localStorage.setItem("isLogin", true);
-        localStorage.setItem("token",res.payload.token)
+        localStorage.setItem("adminToken", res.payload.adminToken);
         history.push("/dashboard");
-      }
-      else {
+      } else {
         setToast(true);
       }
-    })
+    });
   };
 
   return (
@@ -98,7 +103,7 @@ export default function SignIn() {
           }}
           enableReinitialize={true}
           validationSchema={SignupSchema}
-          onSubmit={async(values) => {
+          onSubmit={async (values) => {
             // same shape as initial values
             handleSubmit(values);
           }}
@@ -160,7 +165,7 @@ export default function SignIn() {
           )}
         </Formik>
       </Grid>
-      
+
       <Snackbar
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
         open={toast}

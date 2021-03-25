@@ -94,17 +94,17 @@ export default function NavList() {
       </ListItem>
       <Collapse in={leave} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          <Link to="request" style={{ textDecoration: "none", color: "black" }}>
+          <Link to="leaverequest" style={{ textDecoration: "none", color: "black" }}>
             <ListItem button className={classes.nested}>
               <ListItemIcon>
                 <SendIcon style={{ color: "blue" }} />
               </ListItemIcon>
 
-              <ListItemText primary="Request" />
+              <ListItemText primary="Leave Request" />
             </ListItem>
           </Link>
           <Link
-            to="approval"
+            to="approved"
             style={{ textDecoration: "none", color: "black" }}
           >
             <ListItem button className={classes.nested}>
@@ -112,7 +112,7 @@ export default function NavList() {
                 <CheckCircleOutlineIcon style={{ color: "green" }} />
               </ListItemIcon>
 
-              <ListItemText primary="Approval" />
+              <ListItemText primary="Approved" />
             </ListItem>
           </Link>
         </List>
