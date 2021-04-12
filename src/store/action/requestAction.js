@@ -3,7 +3,7 @@ import fetchHandler from "utils/fetchHandler";
 
 export const LeaveRequest = createAsyncThunk("request/get", async (body) => {
 	const fetchOptions = {
-		url: `/view/leaveList`,
+		url: `/view/pendingLeaveList`,
 		method: "GET",
 		secure: true,
 	};
