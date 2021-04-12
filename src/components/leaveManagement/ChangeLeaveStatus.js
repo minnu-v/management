@@ -15,8 +15,9 @@ import {
   CardContent,
   CardHeader,
   createMuiTheme,
+  ThemeProvider
 } from "@material-ui/core";
-import {green, red} from '@material-ui/core/colors';
+import {green} from '@material-ui/core/colors';
 const ApplyLeaveSchema = Yup.object().shape({
   leaveType: Yup.string().required("Required"),
   duration: Yup.string().required("Required"),
@@ -61,9 +62,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   submit: {
-    margin: theme.spacing(7, 40, 2),
-    textAlign: "centre",
-    width: "25%",
+    margin: theme.spacing(1),
   },
 }));
 
@@ -100,10 +99,10 @@ export default function Request() {
     const {leaveType, description, fromDate, toDate, duration
     } = value;
     const obj = {
-      leaveType: leaveType,
+        leave_type: leaveType,
       description: description,
-      fromDate: fromDate,
-      toDate: toDate,
+      from_date: fromDate,
+      to_date: toDate,
       duration: duration,
     };
     dispatch(ChangeLeaveStatus(obj)).then((res) => {});
@@ -212,7 +211,7 @@ export default function Request() {
                       variant="standard"
                       margin="normal"
                       fullWidth
-                      id="fromDate"
+                      id="from_date"
                       label="From Date"
                       name="fromDate"
                     />
@@ -224,7 +223,7 @@ export default function Request() {
                       variant="standard"
                       margin="normal"
                       fullWidth
-                      id="toDate"
+                      id="to_date"
                       label="To Date"
                       name="toDate"
                     />
@@ -242,22 +241,28 @@ export default function Request() {
                     />
                   </Grid>
                 </Grid>
+                <Grid item xs={12} sm={6}>
+                <ThemeProvider theme={theme}>
                 <Button
                   type="submit"
                   variant="contained"
                   color= "primary"
+                  fullWidth
                   className={classes.submit}
                 >
                  Approve
                 </Button>
+                </ThemeProvider></Grid>
+                <Grid item xs={12} sm={6}>
                 <Button
                   type="submit"
+                  fullWidth
                   variant="contained"
                   color= "secondary"
                   className={classes.submit}
                 >
                  Reject
-                </Button>
+                </Button> </Grid>
               </Form>
             </div>
           </Container>
