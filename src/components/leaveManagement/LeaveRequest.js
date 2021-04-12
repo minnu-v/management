@@ -7,6 +7,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { useDispatch, useSelector } from "react-redux";
+import Link from '@material-ui/core/Link';
 import { LeaveRequest } from 'store/action/requestAction';
 
 const StyledTableCell = withStyles((theme) => ({
@@ -27,6 +28,8 @@ const StyledTableRow = withStyles((theme) => ({
 // function createData(EmployeeID, Name, Status, More) {
 //   return { EmployeeID, Name, Status, More };
 // }
+
+
 
 const useStyles = makeStyles({
   wrapper:{
@@ -68,6 +71,7 @@ export default function CustomizedTables() {
             <StyledTableCell align="right">To Date</StyledTableCell>
             <StyledTableCell align="right">Status</StyledTableCell>
             <StyledTableCell align="right">Description</StyledTableCell>
+            <StyledTableCell align="right">More</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -83,6 +87,7 @@ export default function CustomizedTables() {
               <StyledTableCell align="right">{row.to_date}</StyledTableCell>
               <StyledTableCell align="right">{row.leave_status}</StyledTableCell>
               <StyledTableCell align="right">{row.description}</StyledTableCell>
+              <StyledTableCell align="right"><Link href="changeleavestatus">View more</Link></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

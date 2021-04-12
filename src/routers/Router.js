@@ -11,6 +11,7 @@ import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 import DetailView from "components/employeeManagement/statusOfEmployee/DetailView";
 import ForgotPassword from "components/login/ForgotPassword";
+import ChangeLeaveStatus from "components/leaveManagement/ChangeLeaveStatus";
 
 
 function AppRouter() {
@@ -42,7 +43,9 @@ function AppRouter() {
             <PrivateRoute path="/employeelist">
               <EmployeeList />
             </PrivateRoute>
-            
+            <PrivateRoute path="/changeleavestatus">
+              <ChangeLeaveStatus />
+            </PrivateRoute>
             <PrivateRoute path="/calender">
               <Calender/>
             </PrivateRoute>

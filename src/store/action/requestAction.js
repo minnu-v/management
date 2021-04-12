@@ -22,6 +22,16 @@ export const Approved = createAsyncThunk("request/get", async (body) => {
 });
 
 
+export const ChangeLeaveStatus = createAsyncThunk("request/get", async (body) => {
+	const fetchOptions = {
+		url: `/view/leave/:id`,
+		method: "GET",
+		secure: true,
+	};
+	const responce = await fetchHandler(fetchOptions);
+	return await responce;
+});
+
 
 
 
