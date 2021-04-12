@@ -2,7 +2,7 @@ import React from "react";
 import { TextField } from "formik-material-ui";
 import { useDispatch } from "react-redux";
 import { ChangeLeaveStatus } from "store/action";
-import { Formik, Form, Field} from "formik";
+import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import {
   Grid,
@@ -14,9 +14,8 @@ import {
   Card,
   CardContent,
   CardHeader,
-  createMuiTheme,
 } from "@material-ui/core";
-import {green, red} from '@material-ui/core/colors';
+
 const ApplyLeaveSchema = Yup.object().shape({
   leaveType: Yup.string().required("Required"),
   duration: Yup.string().required("Required"),
@@ -26,6 +25,19 @@ const ApplyLeaveSchema = Yup.object().shape({
 });
 
 const useStyles = makeStyles((theme) => ({
+  margin: {
+    marginRight: theme.spacing(4),
+    marginTop: theme.spacing(5),
+    color: "#FFFFFF",
+    backgroundColor: "#008B02",
+  },
+
+  red: {
+    marginTop: theme.spacing(5),
+    color: "#FFFFFF",
+    backgroundColor: "#B80000",
+  },
+
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
@@ -65,6 +77,10 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "centre",
     width: "25%",
   },
+
+  Button: {
+    textAlign: "center",
+  },
 }));
 
 const tiers = [
@@ -84,21 +100,14 @@ const tiers = [
     description: ["Available:84", "Taken : 0"],
   },
 ];
-const theme = createMuiTheme({
-    palette: {
-      primary: green,
-    },
-  });
 
 export default function Request() {
   const classes = useStyles();
   const dispatch = useDispatch();
-  
-  
+
   const handleSubmit = async (value) => {
     console.log(value);
-    const {leaveType, description, fromDate, toDate, duration
-    } = value;
+    const { leaveType, description, fromDate, toDate, duration } = value;
     const obj = {
       leaveType: leaveType,
       description: description,
@@ -182,7 +191,7 @@ export default function Request() {
 
               <Form className={classes.form} validate>
                 <Grid container spacing={5}>
-                <Grid item xs={12} sm={6}>
+                  <Grid item xs={12} sm={6}>
                     <Field
                       component={TextField}
                       variant="standard"
@@ -242,21 +251,12 @@ export default function Request() {
                     />
                   </Grid>
                 </Grid>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color= "primary"
-                  className={classes.submit}
-                >
-                 Approve
+                <Button variant="contained" className={classes.margin}>
+                  Approve
                 </Button>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color= "secondary"
-                  className={classes.submit}
-                >
-                 Reject
+
+                <Button variant="contained" className={classes.red}>
+                  REJECT
                 </Button>
               </Form>
             </div>

@@ -25,12 +25,6 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-// function createData(EmployeeID, Name, Status, More) {
-//   return { EmployeeID, Name, Status, More };
-// }
-
-
-
 const useStyles = makeStyles({
   wrapper:{
     padding:40,
@@ -87,7 +81,7 @@ export default function CustomizedTables() {
               <StyledTableCell align="right">{row.to_date}</StyledTableCell>
               <StyledTableCell align="right">{row.leave_status}</StyledTableCell>
               <StyledTableCell align="right">{row.description}</StyledTableCell>
-              <StyledTableCell align="right"><Link href="#">View more</Link></StyledTableCell>
+              <StyledTableCell align="right"><Link href="changeleavestatus">View more</Link></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

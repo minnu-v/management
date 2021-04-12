@@ -112,7 +112,7 @@ export default function CustomizedTables() {
           />
         }
       /></StyledTableCell>
-              <StyledTableCell align="right"><Link href="#">View more</Link></StyledTableCell>
+              <StyledTableCell align="right"><Link href="detailview">View more</Link></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
