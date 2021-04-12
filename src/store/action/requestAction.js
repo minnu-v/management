@@ -21,6 +21,15 @@ export const Approved = createAsyncThunk("request/get", async (body) => {
 	return await responce;
 });
 
+export const EmployeeList = createAsyncThunk("request/get", async (body) => {
+	const fetchOptions = {
+		url: `/view/status`,
+		method: "GET",
+		secure: true,
+	};
+	const responce = await fetchHandler(fetchOptions);
+	return await responce;
+});
 
 
 

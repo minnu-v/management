@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { LeaveRequest } from "store/action";
-import { Approved } from "store/action";
+import { LeaveRequest, Approved, EmployeeList } from "store/action";
 
 export const requestReducer = createSlice({
 	name: "request",
@@ -31,6 +30,18 @@ export const requestReducer = createSlice({
 			state.product = payload;
 		},
 		[Approved.rejected]: (state, action) => {
+			state.loading = "idle";
+			state.error = action.error;
+		},
+		[EmployeeList.pending]: (state) => {
+			state.loading = "pending";
+		},
+		[EmployeeList.fulfilled]: (state, action) => {
+			const { payload } = action;
+			state.loading = "idle";
+			state.product = payload;
+		},
+		[EmployeeList.rejected]: (state, action) => {
 			state.loading = "idle";
 			state.error = action.error;
 		},

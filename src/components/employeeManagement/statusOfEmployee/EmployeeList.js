@@ -1,66 +1,109 @@
-import React from "react";
-
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-  Paper,
-  withStyles,
-  makeStyles,
-  Link
-} from "@material-ui/core";
+import React, { useEffect } from 'react';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import Link from '@material-ui/core/Link';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import { useDispatch, useSelector } from "react-redux";
+import { EmployeeList } from 'store/action/requestAction';
+import { Switch, FormControlLabel } from "@material-ui/core";
 import { green, red } from "@material-ui/core/colors";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Switch from "@material-ui/core/Switch";
 
-  const StatusSwitch = withStyles({
-    switchBase: {
-      color: red[600],
-      "&$checked": {
-        color: green[600],
-      },
-      "&$checked + $track": {
-        backgroundColor: green[600],
-      },
+const StatusSwitch = withStyles({
+  switchBase: {
+    color: red[600],
+    "&$checked": {
+      color: green[600],
     },
-    checked: {},
-    track: {},
-  })(Switch);
-  export default function CustomizedTables() {
-    const [state, setState] = React.useState({
-      checkedA: false,
-      checkedB: false,
-      checkedC: false,
-      checkedD: false,
-    });
-  
-    const handleChange = (event) => {
-      setState({ ...state, [event.target.name]: event.target.checked });
-    };
-  const StyledTableCell = withStyles((theme) => ({
-    head: {
-      color: "#ad40bf",
+    "&$checked + $track": {
+      backgroundColor: green[600],
     },
-    body: {
-      fontSize: 14,
-    },
-  }))(TableCell);
+  },
+  checked: {},
+  track: {},
+})(Switch);
 
-  const StyledTableRow = withStyles((theme) => ({
-    root: {},
-  }))(TableRow);
- 
-  function createData(EmployeeID, Name, Status, More) {
-    return { EmployeeID, Name, Status, More };
+const StyledTableCell = withStyles((theme) => ({
+  head: {
+    color:"#ad40bf",
+  },
+  body: {
+    fontSize: 14,
+  },  
+}))(TableCell);
+
+const StyledTableRow = withStyles((theme) => ({
+  root: {
+    
+  },
+}))(TableRow);
+
+// function createData(EmployeeID, Name, Status, More) {
+//   return { EmployeeID, Name, Status, More };
+// }
+
+const useStyles = makeStyles({
+  wrapper:{
+    padding:40,
+  },
+  table: {
+    minWidth: 700,
+  },
+  tdStyle: {
+    padding:25,
+  },
+  box:{
+    border: "1px solid lightgrey",
+    padding:25,
   }
+});
 
-  const rows = [
-    createData(
-      1,
-      "Akhila",
-      <FormControlLabel
+export default function CustomizedTables() {
+  const classes = useStyles();
+  const dispatch = useDispatch(); 
+  const listing = useSelector((state) => state.request?.product);
+
+  const [state, setState] = React.useState({
+    checkedA: false,
+    checkedB: false,
+    checkedC: false,
+    checkedD: false,
+  });
+
+  const handleChange = (event) => {
+    setState({ ...state, [event.target.name]: event.target.checked });
+  };
+
+  useEffect(() => {
+    dispatch(EmployeeList()).then((res) => {
+    });
+  },[dispatch])
+  console.log(listing)
+  return (
+    <div className={classes.box}>
+    <Paper className={classes.wrapper}>
+      <Table className={classes.table} aria-label="customized table">
+        <TableHead> 
+          <TableRow>
+          <StyledTableCell>No</StyledTableCell>
+            {/* <StyledTableCell align="right">EmpId</StyledTableCell> */}
+            <StyledTableCell align="right">Name</StyledTableCell>
+            <StyledTableCell align="right">Status</StyledTableCell>
+            <StyledTableCell align="right">More</StyledTableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {listing?.data?.map((row,i) => (
+            <StyledTableRow key={row.EmployeeID}  >
+              <StyledTableCell component="th" scope="row" className={classes.tdStyle}>
+                {i+1}
+              </StyledTableCell>
+              {/* <StyledTableCell align="right">{row.description}</StyledTableCell> */}
+              <StyledTableCell align="right">{row.first_name}</StyledTableCell>
+              <StyledTableCell align="right"><FormControlLabel
         control={
           <StatusSwitch
             checked={state.checkedA}
@@ -68,101 +111,13 @@ import Switch from "@material-ui/core/Switch";
             name="checkedA"
           />
         }
-      />,
-      <Link href="detailview">View more</Link>
-    ),
-    createData(
-      2,
-      "Aneena",
-      <FormControlLabel
-        control={
-          <StatusSwitch
-            checked={state.checkedB}
-            onChange={handleChange}
-            name="checkedB"
-          />
-        }
-      />,
-      <Link href="detailview">View more</Link>
-    ),
-    createData(
-      3,
-      "Archit",
-      <FormControlLabel
-        control={
-          <StatusSwitch
-            checked={state.checkedC}
-            onChange={handleChange}
-            name="checkedC"
-          />
-        }
-      />,
-      <Link href="detailview">View more</Link>
-    ),
-    createData(
-      4,
-      "Minnu",
-      <FormControlLabel
-        control={
-          <StatusSwitch
-            checked={state.checkedD}
-            onChange={handleChange}
-            name="checkedD"
-          />
-        }
-      />,
-      <Link href="detailview">View more</Link>
-    ),
-  ];
-
-  const useStyles = makeStyles({
-    wrapper: {
-      padding: 40,
-    },
-    table: {
-      minWidth: 700,
-    },
-    tdStyle: {
-      padding: 25,
-    },
-    box: {
-      border: "1px solid lightgrey",
-      padding: 25,
-    },
-  });
-
-  const classes = useStyles();
-
-  return (
-    <div className={classes.box}>
-      <Paper className={classes.wrapper}>
-        <Table className={classes.table} aria-label="customized table">
-          <TableHead>
-            <TableRow>
-              <StyledTableCell>EMPLOYEE ID</StyledTableCell>
-              <StyledTableCell align="right">NAME</StyledTableCell>
-              <StyledTableCell align="right">STATUS</StyledTableCell>
-              <StyledTableCell align="right">MORE</StyledTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <StyledTableRow key={row.EmployeeID}>
-                <StyledTableCell
-                  component="th"
-                  scope="row"
-                  className={classes.tdStyle}
-                >
-                  {row.EmployeeID}
-                </StyledTableCell>
-                <StyledTableCell align="right">{row.Name}</StyledTableCell>
-                <StyledTableCell align="right"> {row.Status}</StyledTableCell>
-                <StyledTableCell align="right">{row.More}</StyledTableCell>
-              </StyledTableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </Paper>
+      /></StyledTableCell>
+              <StyledTableCell align="right"><Link href="#">View more</Link></StyledTableCell>
+            </StyledTableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </Paper>
     </div>
   );
 }

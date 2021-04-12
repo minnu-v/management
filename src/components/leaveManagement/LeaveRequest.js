@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
+import Link from '@material-ui/core/Link';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
@@ -68,6 +69,7 @@ export default function CustomizedTables() {
             <StyledTableCell align="right">To Date</StyledTableCell>
             <StyledTableCell align="right">Status</StyledTableCell>
             <StyledTableCell align="right">Description</StyledTableCell>
+            <StyledTableCell align="right">More</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -83,6 +85,7 @@ export default function CustomizedTables() {
               <StyledTableCell align="right">{row.to_date}</StyledTableCell>
               <StyledTableCell align="right">{row.leave_status}</StyledTableCell>
               <StyledTableCell align="right">{row.description}</StyledTableCell>
+              <StyledTableCell align="right"><Link href="#">View more</Link></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
