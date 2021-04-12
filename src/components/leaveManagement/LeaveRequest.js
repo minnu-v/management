@@ -28,8 +28,6 @@ const StyledTableRow = withStyles((theme) => ({
 //   return { EmployeeID, Name, Status, More };
 // }
 
-
-
 const useStyles = makeStyles({
   wrapper:{
     padding:40,

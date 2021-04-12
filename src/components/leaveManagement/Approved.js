@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -6,7 +6,8 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-
+import { useDispatch, useSelector } from "react-redux";
+import { Approved } from 'store/action/requestAction';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -23,20 +24,9 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-function createData(EmployeeID, Name, Status, More) {
-  return { EmployeeID, Name, Status, More };
-}
-
-const rows = [
-  createData(''),
-  createData(''),
-  createData(''),
-  createData(''),
-  createData(''),
-  createData(''),
-  createData(''),
-  
-];
+// function createData(EmployeeID, Name, Status, More) {
+//   return { EmployeeID, Name, Status, More };
+// }
 
 const useStyles = makeStyles({
   wrapper:{
@@ -56,6 +46,14 @@ const useStyles = makeStyles({
 
 export default function CustomizedTables() {
   const classes = useStyles();
+  const dispatch = useDispatch(); 
+  const listing = useSelector((state) => state.request?.product);
+
+  useEffect(() => {
+    dispatch(Approved()).then((res) => {
+    });
+  },[dispatch])
+  console.log(listing)
 
   return (
     <div className={classes.box}>
@@ -64,22 +62,24 @@ export default function CustomizedTables() {
         <TableHead> 
           <TableRow>
           <StyledTableCell>No</StyledTableCell>
-            <StyledTableCell align="right">EmpId</StyledTableCell>
+            {/* <StyledTableCell align="right">EmpId</StyledTableCell> */}
             <StyledTableCell align="right">From Date</StyledTableCell>
             <StyledTableCell align="right">To Date</StyledTableCell>
+            <StyledTableCell align="right">Status</StyledTableCell>
             <StyledTableCell align="right">Leave Type</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {listing?.data?.map((row,i) => (
             <StyledTableRow key={row.EmployeeID}  >
               <StyledTableCell component="th" scope="row" className={classes.tdStyle}>
-                {row.EmployeeID}
+                {i+1}
               </StyledTableCell>
-              <StyledTableCell align="right">{row.Name}</StyledTableCell>
-              <StyledTableCell align="right">{row.Status}</StyledTableCell>
-              <StyledTableCell align="right">{row.More}</StyledTableCell>
-              <StyledTableCell align="right">{row.More}</StyledTableCell>
+              {/* <StyledTableCell align="right">{row.description}</StyledTableCell> */}
+              <StyledTableCell align="right">{row.from_date}</StyledTableCell>
+              <StyledTableCell align="right">{row.to_date}</StyledTableCell>
+              <StyledTableCell align="right">{row.leave_status}</StyledTableCell>
+              <StyledTableCell align="right">{row.leave_type}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
