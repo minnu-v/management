@@ -17,6 +17,7 @@ const EmployeeSchema = Yup.object().shape({
   email: Yup.string().required("Required"),
   phone: Yup.string().required("Required"),
   phone2: Yup.string().required("Required"),
+  dob: Yup.string().required("Required"),
   bloodgroup: Yup.string().required("Required"),
   relation: Yup.string().required("Required"),
   address1: Yup.string().required("Required"),
@@ -54,7 +55,7 @@ export default function EmpInfo({ handleNext }) {
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
   const [openOne, setOpenOne] = React.useState(false);
-  
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -68,28 +69,46 @@ export default function EmpInfo({ handleNext }) {
   const handleOpenOne = () => {
     setOpenOne(true);
   };
- 
+
   const handleSubmit = async (value) => {
-    console.log(value)
-    const { name, name1, gender, date, bloodgroup, tags, relation, phone, phone2, zip, address1, address2, email, landmark, city, state, country } = value;
+    console.log(value);
+    const {
+      name,
+      name1,
+      gender,
+      dob,
+      bloodgroup,
+      tags,
+      relation,
+      phone,
+      phone2,
+      zip,
+      address1,
+      address2,
+      email,
+      landmark,
+      city,
+      state,
+      country,
+    } = value;
     const obj = {
       personalEmail: email,
       firstName: name,
-      lastName:name1,
+      lastName: name1,
       gender: gender,
-      dob: date,
+      dob: dob,
       bloodGroup: bloodgroup,
       maritalStatus: tags,
-      fatherSpouseName:relation,
-      phNo1:phone,
-      phNo2:phone2,
-      pincode:zip,
-      address1:address1,
-      address2:address2,
-      landmark:landmark,
-      city:city,
-      state:state,
-      country:country
+      fatherSpouseName: relation,
+      phNo1: phone,
+      phNo2: phone2,
+      pincode: zip,
+      address1: address1,
+      address2: address2,
+      landmark: landmark,
+      city: city,
+      state: state,
+      country: country,
     };
     dispatch(PersonalInformation(obj)).then((res) => {});
     handleNext();
@@ -97,12 +116,13 @@ export default function EmpInfo({ handleNext }) {
 
   return (
     <Formik
-     initialValues={{
+      initialValues={{
         name: "",
         name1: "",
         email: "",
         phone: "",
         phone2: "",
+        dob: "",
         bloodgroup: "",
         gender: "",
         tags: "",
@@ -117,14 +137,14 @@ export default function EmpInfo({ handleNext }) {
       }}
       validationSchema={EmployeeSchema}
       enableReinitialize={true}
-			validateOnChange={true}
+      validateOnChange={true}
       onSubmit={async (values) => {
         handleSubmit(values);
-      }}>
-    
-    {({setFieldValue, values}) => (
+      }}
+    >
+      {({ setFieldValue, values }) => (
         <div>
-          {console.log("values",values)}
+          {console.log("values", values)}
 
           <Typography variant="h6" gutterBottom>
             Employee Registration
@@ -134,7 +154,6 @@ export default function EmpInfo({ handleNext }) {
               <Grid item xs={12} md={6}>
                 <Field
                   component={TextField}
-                  
                   variant="standard"
                   margin="normal"
                   fullWidth
@@ -147,7 +166,6 @@ export default function EmpInfo({ handleNext }) {
               <Grid item xs={12} md={6}>
                 <Field
                   component={TextField}
-                  
                   variant="standard"
                   margin="normal"
                   fullWidth
@@ -160,21 +178,19 @@ export default function EmpInfo({ handleNext }) {
               <Grid item xs={12} md={4}>
                 <Field
                   component={TextField}
-                  
                   variant="standard"
                   margin="normal"
                   fullWidth
                   id="date"
                   label="Date Of Birth"
-                  name="date"
+                  name="dob"
                   disable="false"
                 />
               </Grid>
-              
+             
               <Grid item xs={12} md={4}>
                 <Field
                   component={TextField}
-                  
                   variant="standard"
                   margin="normal"
                   fullWidth
@@ -188,15 +204,14 @@ export default function EmpInfo({ handleNext }) {
                 <FormControl className={classes.formControl}>
                   <InputLabel>Gender</InputLabel>
                   <Select
-                  name="gender"
-                  id="gender"
+                    name="gender"
+                    id="gender"
                     open={open}
                     onClose={handleClose}
                     onOpen={handleOpen}
                     value={values.gender}
-                    onChange={e => setFieldValue('gender', e.target.value)}
+                    onChange={(e) => setFieldValue("gender", e.target.value)}
                     //onChange={handleChange}
-                    
                   >
                     <MenuItem disabled value="">
                       <em> gender </em>
@@ -221,7 +236,7 @@ export default function EmpInfo({ handleNext }) {
                 />
               </Grid>
               <Grid item xs={12} md={4}>
-                <FormControl className={classes.formControl} >
+                <FormControl className={classes.formControl}>
                   <InputLabel>Marital status</InputLabel>
                   <Select
                     id="maritalstatus"
@@ -229,7 +244,7 @@ export default function EmpInfo({ handleNext }) {
                     onClose={handleCloseOne}
                     onOpen={handleOpenOne}
                     value={values.tags}
-                    onChange={e => setFieldValue('tags', e.target.value)}
+                    onChange={(e) => setFieldValue("tags", e.target.value)}
                     name="tags"
                   >
                     <MenuItem disabled value="">
@@ -244,7 +259,6 @@ export default function EmpInfo({ handleNext }) {
               <Grid item xs={12} md={4}>
                 <Field
                   component={TextField}
-                  
                   variant="standard"
                   margin="normal"
                   fullWidth
@@ -257,7 +271,6 @@ export default function EmpInfo({ handleNext }) {
               <Grid item xs={12} md={6}>
                 <Field
                   component={TextField}
-                  
                   variant="standard"
                   margin="normal"
                   fullWidth
@@ -270,7 +283,6 @@ export default function EmpInfo({ handleNext }) {
               <Grid item xs={12} md={6}>
                 <Field
                   component={TextField}
-                  
                   variant="standard"
                   margin="normal"
                   fullWidth
@@ -283,7 +295,6 @@ export default function EmpInfo({ handleNext }) {
               <Grid item xs={12} md={6}>
                 <Field
                   component={TextField}
-                  
                   variant="standard"
                   margin="normal"
                   fullWidth
@@ -296,7 +307,6 @@ export default function EmpInfo({ handleNext }) {
               <Grid item xs={12} md={6}>
                 <Field
                   component={TextField}
-                  
                   variant="standard"
                   margin="normal"
                   fullWidth
@@ -309,7 +319,6 @@ export default function EmpInfo({ handleNext }) {
               <Grid item xs={12} md={4}>
                 <Field
                   component={TextField}
-                  
                   variant="standard"
                   margin="normal"
                   fullWidth
@@ -322,7 +331,6 @@ export default function EmpInfo({ handleNext }) {
               <Grid item xs={12} md={4}>
                 <Field
                   component={TextField}
-                  
                   variant="standard"
                   margin="normal"
                   fullWidth
@@ -335,7 +343,6 @@ export default function EmpInfo({ handleNext }) {
               <Grid item xs={12} md={4}>
                 <Field
                   component={TextField}
-                  
                   variant="standard"
                   margin="normal"
                   fullWidth
@@ -348,7 +355,6 @@ export default function EmpInfo({ handleNext }) {
               <Grid item xs={12} md={4}>
                 <Field
                   component={TextField}
-                  
                   variant="standard"
                   margin="normal"
                   fullWidth
@@ -361,7 +367,6 @@ export default function EmpInfo({ handleNext }) {
               <Grid item xs={12} md={4}>
                 <Field
                   component={TextField}
-                  
                   variant="standard"
                   margin="normal"
                   fullWidth
@@ -377,7 +382,7 @@ export default function EmpInfo({ handleNext }) {
                 type="submit"
                 variant="contained"
                 color="primary"
-              //  onClick={handleNext}
+                // onClick={handleNext}
                 className={classes.button}
               >
                 Save & Next

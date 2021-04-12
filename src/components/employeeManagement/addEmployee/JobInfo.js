@@ -58,21 +58,23 @@ export default function JobInfo({ handleNext, handleBack }) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const handlePassword = () => {
     setShowPassword(!showPassword);
   };
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const handleConfirmPassword = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
   const handleSubmit = async (value) => {
-    console.log(value)
+    console.log(value);
     const {
       designation,
       empid,
       salary,
       accno,
-      ifsc,  
+      ifsc,
       doj,
       email,
       password,
@@ -108,7 +110,7 @@ export default function JobInfo({ handleNext, handleBack }) {
       }}
       validationSchema={JobSchema}
       enableReinitialize={true}
-			validateOnChange={true}
+      validateOnChange={true}
       onSubmit={async (values) => {
         handleSubmit(values);
       }}
@@ -142,7 +144,6 @@ export default function JobInfo({ handleNext, handleBack }) {
                   name="empid"
                   id="employee id"
                   label="Employee id"
-                  disable="false"
                 />
               </Grid>
               <Grid item xs={12} md={4}>
@@ -154,10 +155,20 @@ export default function JobInfo({ handleNext, handleBack }) {
                   name="salary"
                   id="salary"
                   label="Salary $"
-                  disable="false"
                 />
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12} md={4}>
+                <Field
+                  component={TextField}
+                  variant="standard"
+                  margin="normal"
+                  fullWidth
+                  id="date"
+                  label="Date Of Joining"
+                  name="doj"
+                />
+              </Grid>
+              <Grid item xs={12} md={4}>
                 <Field
                   component={TextField}
                   variant="standard"
@@ -166,10 +177,9 @@ export default function JobInfo({ handleNext, handleBack }) {
                   name="accno"
                   id="acc no."
                   label="Account number"
-                  disable="false"
                 />
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12} md={4}>
                 <Field
                   component={TextField}
                   variant="standard"
@@ -178,7 +188,6 @@ export default function JobInfo({ handleNext, handleBack }) {
                   name="ifsc"
                   id="IFSC"
                   label="IFS Code"
-                  disable="false"
                 />
               </Grid>
               <Grid item xs={12} md={6}>
@@ -203,7 +212,6 @@ export default function JobInfo({ handleNext, handleBack }) {
                   name="email"
                   id="E-mail"
                   label="Officail mail id"
-                  disable="false"
                 />
               </Grid>
 
@@ -215,7 +223,6 @@ export default function JobInfo({ handleNext, handleBack }) {
                   fullWidth
                   id="password"
                   name="password"
-                  disable="false"
                   label="Password"
                   type={showPassword ? "text" : "password"}
                   InputProps={{
@@ -235,11 +242,10 @@ export default function JobInfo({ handleNext, handleBack }) {
                   variant="standard"
                   margin="normal"
                   fullWidth
-                  disable="false"
                   name="confirmpassword"
                   id="confirmPassword"
                   label="Confirm Password"
-                  type={showConfirmPassword ? "text" : "confirmpassword"}
+                  type={showConfirmPassword ? "text" : "password"}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
