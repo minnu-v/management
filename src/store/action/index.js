@@ -3,5 +3,5 @@ export {
 } from "store/action/authAction";
 
 export {
-	LeaveRequest
+	LeaveRequest, Approved
 } from "store/action/requestAction";

@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { LeaveRequest } from "store/action";
+import { Approved } from "store/action";
 
 export const requestReducer = createSlice({
 	name: "request",
@@ -21,7 +22,18 @@ export const requestReducer = createSlice({
 			state.loading = "idle";
 			state.error = action.error;
 		},
+		[Approved.pending]: (state) => {
+			state.loading = "pending";
+		},
+		[Approved.fulfilled]: (state, action) => {
+			const { payload } = action;
+			state.loading = "idle";
+			state.product = payload;
+		},
+		[Approved.rejected]: (state, action) => {
+			state.loading = "idle";
+			state.error = action.error;
+		},
 	},
 });
-
 export default requestReducer.reducer;
