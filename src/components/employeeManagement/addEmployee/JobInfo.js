@@ -20,7 +20,7 @@ const JobSchema = Yup.object().shape({
   salary: Yup.string().required("Required"),
   accno: Yup.string().required("Required"),
   ifsc: Yup.string().required("Required"),
-  //doj: Yup.string().required("Required"),
+  doj: Yup.string().required("Required"),
   email: Yup.string().required("Required"),
   password: Yup.string().required("Required"),
   confirmpassword: Yup.string()
@@ -178,6 +178,18 @@ export default function JobInfo({ handleNext, handleBack }) {
                   name="ifsc"
                   id="IFSC"
                   label="IFS Code"
+                  disable="false"
+                />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Field
+                  component={TextField}
+                  variant="standard"
+                  margin="normal"
+                  fullWidth
+                  name="doj"
+                  id="doj"
+                  label="Date Of Joining"
                   disable="false"
                 />
               </Grid>
