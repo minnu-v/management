@@ -12,6 +12,7 @@ import PublicRoute from "./PublicRoute";
 import DetailView from "components/employeeManagement/statusOfEmployee/DetailView";
 import ForgotPassword from "components/login/ForgotPassword";
 import ChangeLeaveStatus from "components/leaveManagement/ChangeLeaveStatus";
+import Rejected from "components/leaveManagement/Rejected";
 
 function AppRouter() {
   return (
@@ -35,6 +36,9 @@ function AppRouter() {
           </PrivateRoute>
           <PrivateRoute path="/approved">
             <Approved />
+          </PrivateRoute>
+          <PrivateRoute path="/rejected">
+            < Rejected />
           </PrivateRoute>
           <PrivateRoute path="/detailview">
             <DetailView />
