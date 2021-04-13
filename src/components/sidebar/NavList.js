@@ -18,6 +18,8 @@ import GroupIcon from "@material-ui/icons/Group";
 import DateRangeIcon from "@material-ui/icons/DateRange";
 import { Link } from "react-router-dom";
 import Profile from "components/views/Profile";
+import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -99,7 +101,6 @@ export default function NavList() {
               <ListItemIcon>
                 <SendIcon style={{ color: "blue" }} />
               </ListItemIcon>
-
               <ListItemText primary="Leave Request" />
             </ListItem>
           </Link>
@@ -111,8 +112,18 @@ export default function NavList() {
               <ListItemIcon>
                 <CheckCircleOutlineIcon style={{ color: "green" }} />
               </ListItemIcon>
-
               <ListItemText primary="Approved" />
+            </ListItem>
+          </Link>
+          <Link
+            to="approved"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <ListItem button className={classes.nested}>
+              <ListItemIcon>
+                <CancelOutlinedIcon style={{ color: "red" }} />
+              </ListItemIcon>
+              <ListItemText primary="Rejected" />
             </ListItem>
           </Link>
         </List>
