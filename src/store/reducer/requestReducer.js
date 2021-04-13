@@ -34,23 +34,23 @@ export const requestReducer = createSlice({
       const { payload } = action;
       state.loading = "idle";
       state.product = payload;
-	},
-	[Approved.rejected]: (state, action) => {
-		state.loading = "idle";
-		state.error = action.error;
-	  },
-	  [Rejected.pending]: (state) => {
-		state.loading = "pending";
-	  },
-	  [Rejected.fulfilled]: (state, action) => {
-		const { payload } = action;
-		state.loading = "idle";
-		state.product = payload;
-	  },
-	  [Rejected.rejected]: (state, action) => {
-		  state.loading = "idle";
-		  state.error = action.error;
-		},
+    },
+    [Approved.rejected]: (state, action) => {
+      state.loading = "idle";
+      state.error = action.error;
+    },
+    [Rejected.pending]: (state) => {
+      state.loading = "pending";
+    },
+    [Rejected.fulfilled]: (state, action) => {
+      const { payload } = action;
+      state.loading = "idle";
+      state.product = payload;
+    },
+    [Rejected.rejected]: (state, action) => {
+      state.loading = "idle";
+      state.error = action.error;
+    },
     [ChangeLeaveStatus.rejected]: (state, action) => {
       state.loading = "idle";
       state.error = action.error;
