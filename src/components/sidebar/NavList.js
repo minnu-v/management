@@ -116,7 +116,7 @@ export default function NavList() {
             </ListItem>
           </Link>
           <Link
-            to="approved"
+            to="rejected"
             style={{ textDecoration: "none", color: "black" }}
           >
             <ListItem button className={classes.nested}>
