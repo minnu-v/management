@@ -17,7 +17,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import IconButton from "@material-ui/core/IconButton";
 import SaveIcon from "@material-ui/icons/Save";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -70,7 +70,8 @@ const steps = [
 ];
 
 function getStepContent(step) {
-  switch (step) {
+  switch (step) 
+  {
     case 0:
       return <EmpInfo />;
     case 1:
@@ -132,7 +133,7 @@ export default function DetailView() {
                   style={{
                     color: "green",
                     fontStyle: "bold",
-                    fontFamily: '-apple-system',
+                    fontFamily: "-apple-system",
                   }}
                 >
                   Employee details added successfully !
@@ -177,9 +178,13 @@ export default function DetailView() {
                     onClick={handleNext}
                     className={classes.button}
                   >
-                    {activeStep === steps.length - 1 ? "Submit" :   <IconButton color="primary">
-                      <ArrowForwardIcon />
-                    </IconButton>}
+                    {activeStep === steps.length - 1 ? (
+                      "Submit"
+                    ) : (
+                      <IconButton color="primary">
+                        <ArrowForwardIcon />
+                      </IconButton>
+                    )}
                   </Button>
                 </div>
               </React.Fragment>
