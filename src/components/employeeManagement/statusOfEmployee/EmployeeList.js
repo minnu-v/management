@@ -39,10 +39,6 @@ const StyledTableRow = withStyles((theme) => ({
   root: {},
 }))(TableRow);
 
-// function createData(EmployeeID, Name, Status, More) {
-//   return { EmployeeID, Name, Status, More };
-// }
-
 const useStyles = makeStyles({
   wrapper: {
     padding: 40,
@@ -98,8 +94,7 @@ export default function CustomizedTables() {
                 <StyledTableCell
                   component="th"
                   scope="row"
-                  className={classes.tdStyle}
-                >
+                  className={classes.tdStyle}>
                   {i + 1}
                 </StyledTableCell>
                 {/* <StyledTableCell align="right">{row.description}</StyledTableCell> */}
@@ -110,7 +105,6 @@ export default function CustomizedTables() {
                   <FormControlLabel
                     control={
                       <StatusSwitch
-                        checked={state.checkedA}
                         onChange={handleChange}
                         name="checkedA"
                       />
