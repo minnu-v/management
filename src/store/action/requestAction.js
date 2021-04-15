@@ -42,9 +42,9 @@ export const EmployeeList = createAsyncThunk("request/get", async (body) => {
   return await responce;
 });
 
-export const ChangeLeaveStatus = createAsyncThunk("request/get", async (body) => {
+export const ChangeLeaveStatus = createAsyncThunk("request/get", async (id) => {
     const fetchOptions = {
-      url: `/view/leave/7`,
+      url: `/view/leave/${id}`,
       method: "GET",
       secure: true,
     };

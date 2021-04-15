@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
+import { useHistory } from "react-router-dom";
 import Table from "@material-ui/core/Table";
-import Link from "@material-ui/core/Link";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { useDispatch, useSelector } from "react-redux";
+import IconButton from '@material-ui/core/IconButton';
 import { LeaveRequest } from "store/action/requestAction";
 
 const StyledTableCell = withStyles((theme) => ({
@@ -41,13 +42,18 @@ const useStyles = makeStyles({
 
 export default function CustomizedTables() {
   const classes = useStyles();
+  const history = useHistory();
   const dispatch = useDispatch();
   const listing = useSelector((state) => state.request?.product);
 
   useEffect(() => {
     dispatch(LeaveRequest()).then((res) => {});
   }, [dispatch]);
-  console.log(listing);
+
+  const handleview = (leave_id) => {
+    history.push(`changeleavestatus?leaveId=${leave_id}`)
+  }
+
   return (
     <div className={classes.box}>
       <Paper className={classes.wrapper}>
@@ -91,7 +97,8 @@ export default function CustomizedTables() {
                   {row.description}
                 </StyledTableCell>
                 <StyledTableCell align="right">
-                  <Link href="changeleavestatus">View more</Link>
+                  {/* <Link href="changeleavestatus"></Link> */}
+                  <IconButton onClick={()=>handleview(row?.leave_id)}>View more</IconButton>
                 </StyledTableCell>
               </StyledTableRow>
             ))}

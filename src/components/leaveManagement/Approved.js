@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -6,7 +6,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Approved } from 'store/action/requestAction';
 
 const StyledTableCell = withStyles((theme) => ({
@@ -47,13 +47,15 @@ const useStyles = makeStyles({
 export default function CustomizedTables() {
   const classes = useStyles();
   const dispatch = useDispatch(); 
-  const listing = useSelector((state) => state.request?.product);
+  // const approvelist = useSelector((state) => state?.request?.product);
+  const [approvelist, setApprovelist] = useState([])
 
   useEffect(() => {
     dispatch(Approved()).then((res) => {
+      setApprovelist(res.payload)
     });
   },[dispatch])
-  console.log(listing)
+  console.log(approvelist)
 
   return (
     <div className={classes.box}>
@@ -70,7 +72,7 @@ export default function CustomizedTables() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {listing?.data?.map((row,i) => (
+          { approvelist && approvelist?.data?.map((row,i) => (
             <StyledTableRow key={row.EmployeeID}  >
               <StyledTableCell component="th" scope="row" className={classes.tdStyle}>
                 {i+1}
