@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { TextField } from "formik-material-ui";
 import { useDispatch } from "react-redux";
-import { ChangeLeaveStatus } from "store/action";
+import { ChangeLeaveStatus, Approve, Reject } from "store/action";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
+import { useLocation } from "react-router-dom";
 import {
   Grid,
   Typography,
@@ -24,6 +25,10 @@ const ApplyLeaveSchema = Yup.object().shape({
   description: Yup.string().required("Required"),
 });
 
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+
 const useStyles = makeStyles((theme) => ({
   margin: {
     marginRight: theme.spacing(4),
@@ -31,13 +36,11 @@ const useStyles = makeStyles((theme) => ({
     color: "#FFFFFF",
     backgroundColor: "#008B02",
   },
-
   red: {
     marginTop: theme.spacing(5),
     color: "#FFFFFF",
     backgroundColor: "#B80000",
   },
-
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
@@ -63,7 +66,6 @@ const useStyles = makeStyles((theme) => ({
     // marginLeft: "5%",
     marginTop: "5%",
   },
-
   cardAbbre: {
     display: "flex",
     justifyContent: "center",
@@ -71,11 +73,9 @@ const useStyles = makeStyles((theme) => ({
     color: "#3F51B5",
     marginBottom: theme.spacing(2),
   },
-
   submit: {
     margin: theme.spacing(1),
   },
-
   Button: {
     textAlign: "center",
   },
@@ -101,30 +101,38 @@ const tiers = [
 
 export default function Request() {
   const classes = useStyles();
+  const query = useQuery();
   const dispatch = useDispatch();
+  const [status, setStatus] = useState(null);
+
+  const InitialFields = {
+    leaveType: status?.data?.leave_type ?? "",
+    duration: status?.data?.duration ?? "",
+    fromDate: status?.data?.from_date ?? "",
+    toDate: status?.data?.to_date ?? "",
+    description: status?.data?.description ?? "",
+  };
+
+  useEffect(() => {
+    const id = query.get("leaveId");
+    dispatch(ChangeLeaveStatus(id)).then((res) => {
+      setStatus(res?.payload);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleSubmit = async (value) => {
     console.log(value);
-    const { leaveType, description, fromDate, toDate, duration } = value;
-    const obj = {
-      leave_type: leaveType,
-      description: description,
-      from_date: fromDate,
-      to_date: toDate,
-      duration: duration,
-    };
-    dispatch(ChangeLeaveStatus(obj)).then((res) => {});
-  };
+    const id = query.get("leaveId");
+    dispatch(Approve(id)).then((res) => {});
+    dispatch(Reject(id)).then((res) => {});
+};
+
+  console.log("fdsssss", status);
 
   return (
     <Formik
-      initialValues={{
-        leaveType: "",
-        duration: "",
-        fromDate: "",
-        toDate: "",
-        description: "",
-      }}
+      initialValues={InitialFields}
       validationSchema={ApplyLeaveSchema}
       enableReinitialize={true}
       validateOnChange={true}
@@ -194,9 +202,9 @@ export default function Request() {
                       component={TextField}
                       variant="standard"
                       margin="normal"
+                      value={values.leaveType}
                       fullWidth
                       id="leavetype"
-                      label="Leave Type"
                       name="leavetype"
                     />
                   </Grid>
@@ -207,8 +215,8 @@ export default function Request() {
                       variant="standard"
                       margin="normal"
                       fullWidth
+                      value={values.duration}
                       id="durartion"
-                      label="Duration"
                       name="duration"
                     />
                   </Grid>
@@ -220,7 +228,7 @@ export default function Request() {
                       margin="normal"
                       fullWidth
                       id="from_date"
-                      label="From Date"
+                      value={values.fromDate}
                       name="fromDate"
                     />
                   </Grid>
@@ -232,7 +240,7 @@ export default function Request() {
                       margin="normal"
                       fullWidth
                       id="to_date"
-                      label="To Date"
+                      value={values.toDate}
                       name="toDate"
                     />
                   </Grid>
@@ -244,16 +252,24 @@ export default function Request() {
                       margin="normal"
                       fullWidth
                       id="description"
-                      label="Reason for leave"
+                      value={values.description}
                       name="description"
                     />
                   </Grid>
                 </Grid>
-                <Button variant="contained" className={classes.margin}>
+                <Button
+                  variant="contained"
+                  className={classes.margin}
+                  type="submit"
+                >
                   Approve
                 </Button>
 
-                <Button variant="contained" className={classes.red}>
+                <Button
+                  variant="contained"
+                  className={classes.red}
+                  type="submit"
+                >
                   REJECT
                 </Button>
               </Form>

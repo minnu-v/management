@@ -12,3 +12,7 @@ export {
   EmployeeList,
   ChangeLeaveStatus,
 } from "store/action/requestAction";
+
+export {
+  Approve, Reject
+} from "store/action/statusAction";
