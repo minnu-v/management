@@ -22,15 +22,14 @@ export const Approved = createAsyncThunk("request/get", async (body) => {
 });
 
 export const Rejected = createAsyncThunk("request/get", async (body) => {
-    const fetchOptions = {
-      url: `/view/rejectedList`,
-      method: "GET",
-      secure: true,
-    };
-    const responce = await fetchHandler(fetchOptions);
-    return await responce;
-  }
-);
+  const fetchOptions = {
+    url: `/view/rejectedList`,
+    method: "GET",
+    secure: true,
+  };
+  const responce = await fetchHandler(fetchOptions);
+  return await responce;
+});
 
 export const EmployeeList = createAsyncThunk("request/get", async (body) => {
   const fetchOptions = {
@@ -42,7 +41,9 @@ export const EmployeeList = createAsyncThunk("request/get", async (body) => {
   return await responce;
 });
 
-export const ChangeLeaveStatus = createAsyncThunk("request/get", async (body) => {
+export const ChangeLeaveStatus = createAsyncThunk(
+  "request/get",
+  async (body) => {
     const fetchOptions = {
       url: `/view/leave/7`,
       method: "GET",

@@ -250,7 +250,11 @@ export default function JobInfo({ handleNext, handleBack }) {
                     endAdornment: (
                       <InputAdornment position="end">
                         <IconButton onClick={() => handleConfirmPassword()}>
-                          {showConfirmPassword ? <Visibility /> : <VisibilityOff />}
+                          {showConfirmPassword ? (
+                            <Visibility />
+                          ) : (
+                            <VisibilityOff />
+                          )}
                         </IconButton>
                       </InputAdornment>
                     ),

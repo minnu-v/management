@@ -70,8 +70,7 @@ const steps = [
 ];
 
 function getStepContent(step) {
-  switch (step) 
-  {
+  switch (step) {
     case 0:
       return <EmpInfo />;
     case 1:

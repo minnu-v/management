@@ -38,22 +38,22 @@ const Profile = ({ className, ...rest }) => {
     <Card className={clsx(classes.root, className)} {...rest}>
       <CardContent>
         <Box alignItems="center" display="flex" flexDirection="column">
-        <div className={classes.root}>
-        <input
-          accept="image/*"
-          className={classes.input}
-          id="contained-button-file"
-          multiple
-          type="file"
-        />
-        <label htmlFor="contained-button-file">
-          <Button color="primary" component="span">
-          <Avatar className={classes.avatar} src={user.avatar} />
-          </Button>
-        </label>
+          <div className={classes.root}>
+            <input
+              accept="image/*"
+              className={classes.input}
+              id="contained-button-file"
+              multiple
+              type="file"
+            />
+            <label htmlFor="contained-button-file">
+              <Button color="primary" component="span">
+                <Avatar className={classes.avatar} src={user.avatar} />
+              </Button>
+            </label>
           </div>
         </Box>
-      </CardContent>  
+      </CardContent>
     </Card>
   );
 };

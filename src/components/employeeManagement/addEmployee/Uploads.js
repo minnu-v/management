@@ -72,21 +72,20 @@ export default function Upload({ handleNext, handleBack }) {
             <li key={fileName}>{fileName}</li>
           ))}
         </ul>
-        <div className={classes.buttons}>   
-        <Button onClick={handleBack} className={classes.button}>
-          Back
-        </Button>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleNext}
-                    className={classes.button}
-                  >
-                   Submit
-                  </Button>
-                </div>
+        <div className={classes.buttons}>
+          <Button onClick={handleBack} className={classes.button}>
+            Back
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleNext}
+            className={classes.button}
+          >
+            Submit
+          </Button>
+        </div>
       </div>
     </div>
-    
   );
 }

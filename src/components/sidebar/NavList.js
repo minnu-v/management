@@ -18,8 +18,7 @@ import GroupIcon from "@material-ui/icons/Group";
 import DateRangeIcon from "@material-ui/icons/DateRange";
 import { Link } from "react-router-dom";
 import Profile from "components/views/Profile";
-import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
-
+import CancelOutlinedIcon from "@material-ui/icons/CancelOutlined";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -96,7 +95,10 @@ export default function NavList() {
       </ListItem>
       <Collapse in={leave} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          <Link to="leaverequest" style={{ textDecoration: "none", color: "black" }}>
+          <Link
+            to="leaverequest"
+            style={{ textDecoration: "none", color: "black" }}
+          >
             <ListItem button className={classes.nested}>
               <ListItemIcon>
                 <SendIcon style={{ color: "blue" }} />
@@ -141,7 +143,6 @@ export default function NavList() {
           </ListItemIcon>
 
           <ListItemText primary="Work Calender" />
-
         </ListItem>
       </Link>
     </List>
