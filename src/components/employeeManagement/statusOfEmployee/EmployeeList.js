@@ -41,7 +41,6 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-
 const useStyles = makeStyles({
   wrapper:{
     padding:40,
@@ -81,42 +80,48 @@ export default function CustomizedTables() {
   console.log(listing)
   return (
     <div className={classes.box}>
-    <Paper className={classes.wrapper}>
-      <Table className={classes.table} aria-label="customized table">
-        <TableHead> 
-          <TableRow>
-          <StyledTableCell>No</StyledTableCell>
-            {/* <StyledTableCell align="right">EmpId</StyledTableCell> */}
-            <StyledTableCell align="right">Name</StyledTableCell>
-            <StyledTableCell align="right">Status</StyledTableCell>
-            <StyledTableCell align="right">More</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {listing?.data?.map((row,i) => (
-            <StyledTableRow key={row.EmployeeID}  >
-              <StyledTableCell component="th" scope="row" className={classes.tdStyle}>
-                {i+1}
-              </StyledTableCell>
-              {/* <StyledTableCell align="right">{row.description}</StyledTableCell> */}
-              <StyledTableCell align="right">{row.first_name}</StyledTableCell>
-              <StyledTableCell align="right">
-                <FormControlLabel
-        control={
-          <StatusSwitch
-            checked={state.checkedA}
-            onChange={handleChange}
-            name="checkedA"
-          />
-        }
-      />
-      </StyledTableCell>
-              <StyledTableCell align="right"><Link href="detailview">View more</Link></StyledTableCell>
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </Paper>
+      <Paper className={classes.wrapper}>
+        <Table className={classes.table} aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell>No</StyledTableCell>
+              {/* <StyledTableCell align="right">EmpId</StyledTableCell> */}
+              <StyledTableCell align="right">Name</StyledTableCell>
+              <StyledTableCell align="right">Status</StyledTableCell>
+              <StyledTableCell align="right">More</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {listing?.data?.map((row, i) => (
+              <StyledTableRow key={row.EmployeeID}>
+                <StyledTableCell
+                  component="th"
+                  scope="row"
+                  className={classes.tdStyle}>
+                  {i + 1}
+                </StyledTableCell>
+                {/* <StyledTableCell align="right">{row.description}</StyledTableCell> */}
+                <StyledTableCell align="right">
+                  {row.first_name}
+                </StyledTableCell>
+                <StyledTableCell align="right">
+                  <FormControlLabel
+                    control={
+                      <StatusSwitch
+                        onChange={handleChange}
+                        name="checkedA"
+                      />
+                    }
+                  />
+                </StyledTableCell>
+                <StyledTableCell align="right">
+                  <Link href="detailview">View more</Link>
+                </StyledTableCell>
+              </StyledTableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </Paper>
     </div>
   );
 }
