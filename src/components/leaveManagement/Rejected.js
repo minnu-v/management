@@ -11,33 +11,31 @@ import { Rejected } from 'store/action/requestAction';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
-    color:"#ad40bf",
+    color: "#ad40bf",
   },
   body: {
     fontSize: 14,
-  },  
+  },
 }))(TableCell);
 
 const StyledTableRow = withStyles((theme) => ({
-  root: {
-    
-  },
+  root: {},
 }))(TableRow);
 
 const useStyles = makeStyles({
-  wrapper:{
-    padding:40,
+  wrapper: {
+    padding: 40,
   },
   table: {
     minWidth: 700,
   },
   tdStyle: {
-    padding:25,
+    padding: 25,
   },
-  box:{
+  box: {
     border: "1px solid lightgrey",
-    padding:25,
-  }
+    padding: 25,
+  },
 });
 
 export default function CustomizedTables() {

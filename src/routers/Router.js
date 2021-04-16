@@ -38,7 +38,7 @@ function AppRouter() {
             <Approved />
           </PrivateRoute>
           <PrivateRoute path="/rejected">
-            < Rejected />
+            <Rejected />
           </PrivateRoute>
           <PrivateRoute path="/detailview">
             <DetailView />

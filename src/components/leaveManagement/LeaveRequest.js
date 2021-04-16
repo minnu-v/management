@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect , useState } from "react";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import Table from "@material-ui/core/Table";
@@ -7,7 +7,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import IconButton from '@material-ui/core/IconButton';
 import { LeaveRequest } from "store/action/requestAction";
 
@@ -44,12 +44,14 @@ export default function CustomizedTables() {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
-  const listing = useSelector((state) => state.request?.product);
+  const [leaverequest, setLeaverequest] = useState(null)
 
   useEffect(() => {
-    dispatch(LeaveRequest()).then((res) => {});
+    dispatch(LeaveRequest()).then((res) => {
+      setLeaverequest(res.payload)
+    });
   }, [dispatch]);
-
+  console.log(leaverequest)
   const handleview = (leave_id) => {
     history.push(`changeleavestatus?leaveId=${leave_id}`)
   }
@@ -72,7 +74,7 @@ export default function CustomizedTables() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {listing?.data?.map((row, i) => (
+            {leaverequest && leaverequest?.data?.map((row, i) => (
               <StyledTableRow key={row.EmployeeID}>
                 <StyledTableCell
                   component="th"

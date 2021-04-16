@@ -22,15 +22,14 @@ export const Approved = createAsyncThunk("request/get", async (body) => {
 });
 
 export const Rejected = createAsyncThunk("request/get", async (body) => {
-    const fetchOptions = {
-      url: `/view/rejectedList`,
-      method: "GET",
-      secure: true,
-    };
-    const responce = await fetchHandler(fetchOptions);
-    return await responce;
-  }
-);
+  const fetchOptions = {
+    url: `/view/rejectedList`,
+    method: "GET",
+    secure: true,
+  };
+  const responce = await fetchHandler(fetchOptions);
+  return await responce;
+});
 
 export const EmployeeList = createAsyncThunk("request/get", async (body) => {
   const fetchOptions = {

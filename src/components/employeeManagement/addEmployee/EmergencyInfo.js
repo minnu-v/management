@@ -28,7 +28,6 @@ const EmergencySchema = Yup.object().shape({
   address1: Yup.string().required("Required"),
 });
 
-
 const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -54,7 +53,6 @@ export default function EmergencyInfo({ handleNext, handleBack }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
- 
 
   const handleClose = () => {
     setOpen(false);
@@ -64,7 +62,7 @@ export default function EmergencyInfo({ handleNext, handleBack }) {
     setOpen(true);
   };
   const handleSubmit = async (value) => {
-    console.log(value)
+    console.log(value);
     const { name, phone, tags, address1, address2 } = value;
     const obj = {
       fullName: name,
@@ -88,14 +86,14 @@ export default function EmergencyInfo({ handleNext, handleBack }) {
       }}
       validationSchema={EmergencySchema}
       enableReinitialize={true}
-			validateOnChange={true}
+      validateOnChange={true}
       onSubmit={async (values) => {
         handleSubmit(values);
       }}
     >
-      {({setFieldValue, values}) => (
+      {({ setFieldValue, values }) => (
         <div>
-          {console.log("values",values)}
+          {console.log("values", values)}
           <Typography variant="h6" gutterBottom>
             Emergency Contact Information
           </Typography>
@@ -132,7 +130,7 @@ export default function EmergencyInfo({ handleNext, handleBack }) {
                     onClose={handleClose}
                     onOpen={handleOpen}
                     value={values.tags}
-                    onChange={e => setFieldValue('tags', e.target.value)}
+                    onChange={(e) => setFieldValue("tags", e.target.value)}
                     //onChange={handleChange}
                     name="tags"
                   >

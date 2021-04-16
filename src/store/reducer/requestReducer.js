@@ -13,6 +13,7 @@ export const requestReducer = createSlice({
     loading: "idle",
     product: [],
     error: null,
+
   },
   extraReducers: {
     [LeaveRequest.pending]: (state) => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Avatar, Button, CssBaseline, Grid} from "@material-ui/core";
+import { Avatar, Button, CssBaseline, Grid } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { Typography, Container, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -61,19 +61,22 @@ export default function ForgotPassword() {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography variant="h5">
-          Forgot your password?
+        <Typography variant="h5">Forgot your password?</Typography>
+        <Typography
+          variant="subtitle1"
+          gutterBottom
+          className={classes.subContent}
+        >
+          Enter the email address associated with your account. We will email
+          you a link to reset your password.
         </Typography>
-        <Typography variant="subtitle1" gutterBottom className={classes.subContent}>
-        Enter the email address associated with your account. We will email you a link to reset your password.
-      </Typography>
         <Formik
           initialValues={{
             email: "",
           }}
           enableReinitialize={true}
           validationSchema={ValidationSchema}
-          onSubmit={async(values) => {
+          onSubmit={async (values) => {
             // same shape as initial values
             handleSubmit(values);
           }}
@@ -102,7 +105,6 @@ export default function ForgotPassword() {
                   Reset Password
                 </Button>
               </Box>
-
             </Form>
           )}
         </Formik>

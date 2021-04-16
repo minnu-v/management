@@ -19,5 +19,5 @@ const PublicRoute = ({ children, ...rest }) => {
       }
     />
   );
-}
+};
 export default PublicRoute;

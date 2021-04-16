@@ -18,9 +18,8 @@ import { useHistory } from "react-router-dom";
 import NavList from "./NavList";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
-
 const drawerWidth = 290;
- 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -98,7 +97,7 @@ const useStyles = makeStyles((theme) => ({
     height: 240,
   },
 }));
- 
+
 export default function Sidebar({ children }) {
   const history = useHistory();
   const classes = useStyles();
@@ -109,21 +108,20 @@ export default function Sidebar({ children }) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
- 
+
   const handleLogout = () => {
     localStorage.setItem("isLogin", false);
     history.push("/");
   };
- 
+
   return (
     <div className={classes.root}>
       <CssBaseline />
-      
+
       <AppBar
         position="absolute"
         className={clsx(classes.appBar, open && classes.appBarShift)}
       >
-        
         <Toolbar className={classes.toolbar}>
           <IconButton
             edge="start"
@@ -144,7 +142,7 @@ export default function Sidebar({ children }) {
             noWrap
             className={classes.title}
           >
-            MANAGEMENT  SYSTEM
+            MANAGEMENT SYSTEM
           </Typography>
           <IconButton aria-label="show 17 new notifications" color="inherit">
             <Badge badgeContent={17} color="secondary">

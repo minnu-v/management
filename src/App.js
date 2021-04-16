@@ -3,8 +3,8 @@ import AppRouter from "routers/Router";
 
 function App() {
   useEffect(() => {
-    if(!JSON.parse(localStorage.getItem("isLogin")))
-    localStorage.setItem("isLogin", false);
+    if (!JSON.parse(localStorage.getItem("isLogin")))
+      localStorage.setItem("isLogin", false);
   }, []);
   return (
     <Fragment>
