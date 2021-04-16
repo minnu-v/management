@@ -20,4 +20,14 @@ export const Reject = createAsyncThunk("status/put", async (id) => {
     const responce = await fetchHandler(fetchOptions);
     return await responce;
   });
+
+  export const Empstatus = createAsyncThunk("status/put", async (id) => {
+    const fetchOptions = {
+      url: `/status/${id}`,
+      method: "PUT",
+      secure: true,
+    };
+    const responce = await fetchHandler(fetchOptions);
+    return await responce;
+  });
   

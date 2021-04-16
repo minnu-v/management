@@ -9,6 +9,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { useDispatch, useSelector } from "react-redux";
 import { EmployeeList } from "store/action/requestAction";
+import { Empstatus } from "store/action/statusAction";
 import { Switch, FormControlLabel } from "@material-ui/core";
 import { green, red } from "@material-ui/core/colors";
 
@@ -60,20 +61,23 @@ export default function CustomizedTables() {
   const dispatch = useDispatch();
   const listing = useSelector((state) => state.request?.product);
 
-  const [state, setState] = React.useState({
-    checkedA: false,
-    checkedB: false,
-    checkedC: false,
-    checkedD: false,
-  });
-
-  const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
+  const listingApi = () => {
+    dispatch(EmployeeList());
   };
 
   useEffect(() => {
-    dispatch(EmployeeList()).then((res) => {});
-  }, [dispatch]);
+    listingApi();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleChange = (event, row) => {
+    console.log(row);
+    const id = row?.job_id;
+    dispatch(Empstatus(id)).then((res) => {
+      listingApi();
+    });
+  };
+
   console.log(listing);
   return (
     <div className={classes.box}>
@@ -94,19 +98,20 @@ export default function CustomizedTables() {
                 <StyledTableCell
                   component="th"
                   scope="row"
-                  className={classes.tdStyle}>
+                  className={classes.tdStyle}
+                >
                   {i + 1}
                 </StyledTableCell>
                 {/* <StyledTableCell align="right">{row.description}</StyledTableCell> */}
                 <StyledTableCell align="right">
-                  {row.first_name}
+                  {row.official_email}
                 </StyledTableCell>
                 <StyledTableCell align="right">
                   <FormControlLabel
                     control={
                       <StatusSwitch
-                        onChange={handleChange}
-                        name="checkedA"
+                        checked={row?.user_status}
+                        onChange={(event) => handleChange(event, row)}
                       />
                     }
                   />
