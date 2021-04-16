@@ -15,5 +15,5 @@ export {
 } from "store/action/requestAction";
 
 export {
-  Approve, Reject
+  Approve, Reject, Empstatus
 } from "store/action/statusAction";
