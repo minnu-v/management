@@ -271,7 +271,7 @@ export default function JobInfo({ handleNext, handleBack }) {
                 variant="contained"
                 color="primary"
                 type="submit"
-                // onClick={handleNext}
+                onClick={handleNext}
                 className={classes.button}
               >
                 Save & Next

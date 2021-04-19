@@ -3,6 +3,7 @@ export {
   LoginCredentials,
   EmergencyContact,
   JobInformation,
+  Upload
 } from "store/action/authAction";
 
 export {

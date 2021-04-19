@@ -382,7 +382,7 @@ export default function EmpInfo({ handleNext }) {
                 type="submit"
                 variant="contained"
                 color="primary"
-                // onClick={handleNext}
+                onClick={handleNext}
                 className={classes.button}
               >
                 Save & Next

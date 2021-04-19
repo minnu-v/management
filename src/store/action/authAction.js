@@ -51,3 +51,17 @@ export const PersonalInformation = createAsyncThunk(
     return await responce;
   }
 );
+
+export const Upload = createAsyncThunk(
+  "auth/upload",
+  async (body) => {
+    const fetchOptions = {
+      url: `/upload/profileImgUpload`,
+      method: "post",
+      secure: true,
+      body: body,
+    };
+    const responce = await fetchHandler(fetchOptions);
+    return await responce;
+  }
+);
