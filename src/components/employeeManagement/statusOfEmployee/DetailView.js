@@ -9,10 +9,10 @@ import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import EmpInfo from "../addEmployee/EmpInfo";
-import JobInfo from "../addEmployee/JobInfo";
+import Emp from "../statusOfEmployee/Emp";
+import Job from "../statusOfEmployee/Job";
 import Uploads from "../addEmployee/Uploads";
-import EmergencyInfo from "../addEmployee/EmergencyInfo";
+import Emergency from "../statusOfEmployee/Emergency";
 import EditIcon from "@material-ui/icons/Edit";
 import IconButton from "@material-ui/core/IconButton";
 import SaveIcon from "@material-ui/icons/Save";
@@ -72,11 +72,11 @@ const steps = [
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return <EmpInfo />;
+      return <Emp />;
     case 1:
-      return <JobInfo />;
+      return <Job />;
     case 2:
-      return <EmergencyInfo />;
+      return <Emergency />;
     case 3:
       return <Uploads />;
     default:
