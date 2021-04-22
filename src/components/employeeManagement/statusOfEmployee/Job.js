@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { TextField } from "formik-material-ui";
@@ -11,8 +11,9 @@ import {
   InputAdornment,
 } from "@material-ui/core";
 import { useDispatch } from "react-redux";
-import { JobInformation } from "store/action";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
+import { useLocation } from "react-router-dom";
+import { Job, JobEdit } from "store/action";
 
 const JobSchema = Yup.object().shape({
   designation: Yup.string().required("Required"),
@@ -33,6 +34,10 @@ const JobSchema = Yup.object().shape({
       ),
     }),
 });
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
 const useStyles = makeStyles((theme) => ({
   submit: {
@@ -56,7 +61,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function JobInfo({ handleNext, handleBack }) {
   const classes = useStyles();
+  const query = useQuery();
   const dispatch = useDispatch();
+  const [status, setStatus] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -67,47 +74,40 @@ export default function JobInfo({ handleNext, handleBack }) {
   const handleConfirmPassword = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
+   
+  const InitialFields = {
+    designation: status?.data?.designation ?? "",
+    jobid: status?.data?.job_id ?? "",
+    salary: status?.data?.salary ?? "",
+    accno: status?.data?.accno ?? "",
+    ifsc: status?.data?.ifsc ?? "",
+    doj: status?.data?.doj ?? "",
+    email: status?.data?.email ?? "",
+    password: status?.data?.password ?? "",
+    confirmpassword: status?.data?.confirmpassword ?? "",
+  };
+
+  useEffect(() => {
+    const id = query.get("jobid");
+    
+    dispatch(Job(id)).then((res) => {
+      setStatus(res?.payload);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleSubmit = async (value) => {
     console.log(value);
-    const {
-      designation,
-      empid,
-      salary,
-      accno,
-      ifsc,
-      doj,
-      email,
-      password,
-      confirmpassword,
-    } = value;
-    const obj = {
-      designation: designation,
-      userId: empid,
-      salary: salary,
-      accountNo: accno,
-      ifsc: ifsc,
-      doj: doj,
-      officialEmail: email,
-      password: password,
-      confirmpassword: confirmpassword,
-    };
-    dispatch(JobInformation(obj)).then((res) => {});
-    handleNext();
+    const id = query.get("jobid");
+    
+    dispatch(JobEdit(id)).then((res) => {});
+    // handleEdit();
   };
+  
 
   return (
     <Formik
-      initialValues={{
-        designation: "",
-        empid: "",
-        salary: "",
-        accno: "",
-        ifsc: "",
-        doj: "",
-        email: "",
-        password: "",
-        confirmpassword: "",
-      }}
+      initialValues={InitialFields}
       validationSchema={JobSchema}
       enableReinitialize={true}
       validateOnChange={true}
@@ -115,9 +115,9 @@ export default function JobInfo({ handleNext, handleBack }) {
         handleSubmit(values);
       }}
     >
-      {(formik) => (
+      {(values) => (
         <div>
-          {console.log(formik)}
+          {console.log("values", values)}
           <Typography variant="h6" gutterBottom>
             Job Information
           </Typography>
@@ -130,9 +130,9 @@ export default function JobInfo({ handleNext, handleBack }) {
                   margin="normal"
                   fullWidth
                   id="designation"
-                  label="Designation"
                   name="designation"
-                  disable="false"
+                  value={values.designation}
+                  label="Designation"
                 />
               </Grid>
               <Grid item xs={12} md={4}>
@@ -143,6 +143,7 @@ export default function JobInfo({ handleNext, handleBack }) {
                   fullWidth
                   name="empid"
                   id="employee id"
+                  value={values.empid}
                   label="Employee id"
                 />
               </Grid>
@@ -154,21 +155,11 @@ export default function JobInfo({ handleNext, handleBack }) {
                   fullWidth
                   name="salary"
                   id="salary"
+                  value={values.salary}
                   label="Salary $"
                 />
               </Grid>
-              <Grid item xs={12} md={4}>
-                <Field
-                  component={TextField}
-                  variant="standard"
-                  margin="normal"
-                  fullWidth
-                  id="date"
-                  label="Date Of Joining"
-                  name="doj"
-                />
-              </Grid>
-              <Grid item xs={12} md={4}>
+              <Grid item xs={12} md={6}>
                 <Field
                   component={TextField}
                   variant="standard"
@@ -176,10 +167,11 @@ export default function JobInfo({ handleNext, handleBack }) {
                   fullWidth
                   name="accno"
                   id="acc no."
+                  value={values.accno}
                   label="Account number"
                 />
               </Grid>
-              <Grid item xs={12} md={4}>
+              <Grid item xs={12} md={6}>
                 <Field
                   component={TextField}
                   variant="standard"
@@ -187,6 +179,7 @@ export default function JobInfo({ handleNext, handleBack }) {
                   fullWidth
                   name="ifsc"
                   id="IFSC"
+                  value={values.ifsc}
                   label="IFS Code"
                 />
               </Grid>
@@ -198,8 +191,8 @@ export default function JobInfo({ handleNext, handleBack }) {
                   fullWidth
                   name="doj"
                   id="doj"
+                  value={values.doj}
                   label="Date Of Joining"
-                  disable="false"
                 />
               </Grid>
 
@@ -211,6 +204,7 @@ export default function JobInfo({ handleNext, handleBack }) {
                   fullWidth
                   name="email"
                   id="E-mail"
+                  value={values.email}
                   label="Officail mail id"
                 />
               </Grid>
@@ -223,6 +217,7 @@ export default function JobInfo({ handleNext, handleBack }) {
                   fullWidth
                   id="password"
                   name="password"
+                  value={values.password}
                   label="Password"
                   type={showPassword ? "text" : "password"}
                   InputProps={{
@@ -245,6 +240,7 @@ export default function JobInfo({ handleNext, handleBack }) {
                   name="confirmpassword"
                   id="confirmPassword"
                   label="Confirm Password"
+                  value={values.confirmpassword}
                   type={showConfirmPassword ? "text" : "password"}
                   InputProps={{
                     endAdornment: (
@@ -266,6 +262,16 @@ export default function JobInfo({ handleNext, handleBack }) {
               <Button onClick={handleBack} className={classes.button}>
                 Back
               </Button>
+              
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                // onClick={handleEdit}
+                className={classes.button}
+              >
+                Edit
+              </Button>
 
               <Button
                 variant="contained"
@@ -274,7 +280,7 @@ export default function JobInfo({ handleNext, handleBack }) {
                 onClick={handleNext}
                 className={classes.button}
               >
-                Save
+                Save & Next
               </Button>
             </div>
           </Form>

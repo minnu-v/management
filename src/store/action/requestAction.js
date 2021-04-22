@@ -51,3 +51,36 @@ export const ChangeLeaveStatus = createAsyncThunk("request/get", async (id) => {
     return await responce;
   }
 );
+
+export const Job = createAsyncThunk("request/get", async (id) => {
+    const fetchOptions = {
+      url: `/view/employee/job/${id}`,
+      method: "GET",
+      secure: true,
+    };
+    const responce = await fetchHandler(fetchOptions);
+    return await responce;
+  }
+);
+
+export const Personal = createAsyncThunk("request/get", async (id) => {
+    const fetchOptions = {
+      url: `/view/employee/personal/${id}`,
+      method: "GET",
+      secure: true,
+    };
+    const responce = await fetchHandler(fetchOptions);
+    return await responce;
+  }
+);
+
+export const Emergency = createAsyncThunk("request/get", async (id) => {
+  const fetchOptions = {
+    url: `/view/employee/contact/${id}`,
+    method: "GET",
+    secure: true,
+  };
+  const responce = await fetchHandler(fetchOptions);
+  return await responce;
+}
+);

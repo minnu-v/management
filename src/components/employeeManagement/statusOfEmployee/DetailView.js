@@ -13,11 +13,6 @@ import Emp from "../statusOfEmployee/Emp";
 import Job from "../statusOfEmployee/Job";
 import Uploads from "../addEmployee/Uploads";
 import Emergency from "../statusOfEmployee/Emergency";
-import EditIcon from "@material-ui/icons/Edit";
-import IconButton from "@material-ui/core/IconButton";
-import SaveIcon from "@material-ui/icons/Save";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -69,16 +64,16 @@ const steps = [
   "Uploads",
 ];
 
-function getStepContent(step) {
+function getStepContent(step, handleNext, handleBack) {
   switch (step) {
     case 0:
-      return <Emp />;
+      return <Emp handleNext={handleNext}/>;
     case 1:
-      return <Job />;
+      return <Job handleNext={handleNext} handleBack={handleBack}/>;
     case 2:
-      return <Emergency />;
+      return <Emergency handleNext={handleNext} handleBack={handleBack}/>;
     case 3:
-      return <Uploads />;
+      return <Uploads handleNext={handleNext} handleBack={handleBack}/>;
     default:
       throw new Error("Unknown step");
   }
@@ -90,14 +85,6 @@ export default function DetailView() {
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
-  };
-
-  const handleEdit = () => {
-    alert("you can edit now");
-  };
-
-  const handleSave = () => {
-    alert("saved");
   };
 
   const handleBack = () => {
@@ -150,42 +137,7 @@ export default function DetailView() {
               </React.Fragment>
             ) : (
               <React.Fragment>
-                {getStepContent(activeStep)}
-                <div className={classes.buttons}>
-                  {activeStep !== 0 && (
-                    <Button onClick={handleBack} className={classes.button}>
-                      <IconButton color="primary">
-                        <ArrowBackIcon />
-                      </IconButton>
-                    </Button>
-                  )}
-
-                  <Button onClick={handleEdit} className={classes.button}>
-                    <IconButton color="primary">
-                      <EditIcon />
-                    </IconButton>
-                  </Button>
-
-                  <Button onClick={handleSave} className={classes.button}>
-                    <IconButton color="primary">
-                      <SaveIcon />
-                    </IconButton>
-                  </Button>
-
-                  <Button
-                    color="primary"
-                    onClick={handleNext}
-                    className={classes.button}
-                  >
-                    {activeStep === steps.length - 1 ? (
-                      "Submit"
-                    ) : (
-                      <IconButton color="primary">
-                        <ArrowForwardIcon />
-                      </IconButton>
-                    )}
-                  </Button>
-                </div>
+                {getStepContent(activeStep, handleNext, handleBack)}
               </React.Fragment>
             )}
           </React.Fragment>

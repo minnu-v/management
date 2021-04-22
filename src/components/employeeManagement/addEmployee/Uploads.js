@@ -4,7 +4,7 @@ import AddIcon from "@material-ui/icons/Add";
 import { Button, makeStyles } from "@material-ui/core";
 import { useDropzone } from "react-dropzone";
 import { useDispatch } from "react-redux";
-import {Upload} from "store/action"
+import { Upload } from "store/action";
 const useStyles = makeStyles((theme) => ({
   buttons: {
     display: "flex",
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-  export default  function Dropzone({ handleBack, handleNext }, props) {
+export default function Dropzone({ handleBack, handleNext }, props) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { getRootProps, getInputProps, open, acceptedFiles } = useDropzone({
@@ -28,6 +28,8 @@ const useStyles = makeStyles((theme) => ({
   const handleSubmission = async (value) => {
     alert("File Uploaded Successully");
     console.log(value);
+    // let formData = new FormData(); // Currently empty
+    // formData.append('profileImage', myFileInput.files[0], 'chris.jpg');
     const { upload } = value;
     const obj = {
       profileImage: upload,
@@ -50,10 +52,7 @@ const useStyles = makeStyles((theme) => ({
           variant="contained"
           color="primary"
           startIcon={<AddIcon />}
-          onClick={open}
-        >
-          Pick Files
-        </Button>
+          onClick={open}>Pick Files</Button>
       </div>
 
       <aside>
@@ -66,11 +65,9 @@ const useStyles = makeStyles((theme) => ({
           color="primary"
           name="upload"
           startIcon={<CloudUploadIcon />}
-          onClick={handleSubmission}
-        >
-          Upload
-        </Button>
+          onClick={handleSubmission}>Upload</Button>
       </div>
+      
       <div className={classes.buttons}>
         <Button onClick={handleBack} className={classes.button}>
           Back
@@ -81,10 +78,7 @@ const useStyles = makeStyles((theme) => ({
           color="primary"
           type="submit"
           onClick={handleNext}
-          className={classes.button}
-        >
-          Save & Next
-        </Button>
+          className={classes.button}>Save & Next</Button>
       </div>
     </div>
   );

@@ -12,8 +12,11 @@ export {
   Rejected,
   EmployeeList,
   ChangeLeaveStatus,
+  Job,
+  Personal,
+  Emergency,
 } from "store/action/requestAction";
 
 export {
-  Approve, Reject, Empstatus
+  Approve, Reject, Empstatus, JobEdit, PersonalEdit, EmergencyEdit,
 } from "store/action/statusAction";

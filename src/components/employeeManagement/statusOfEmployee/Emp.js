@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React from "react";
+import React, { useEffect, useState } from "react";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
@@ -8,8 +8,9 @@ import { Grid, Typography, Button, makeStyles } from "@material-ui/core";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { TextField } from "formik-material-ui";
-import { PersonalInformation } from "store/action";
+import { Personal, PersonalEdit } from "store/action";
 import { useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 const EmployeeSchema = Yup.object().shape({
   name: Yup.string().required("Required"),
@@ -30,6 +31,10 @@ const EmployeeSchema = Yup.object().shape({
   zip: Yup.string().required("Required"),
   tags: Yup.string().required("Required"),
 });
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -52,7 +57,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function EmpInfo({ handleNext }) {
   const classes = useStyles();
+  const query = useQuery();
   const dispatch = useDispatch();
+  const [status, setStatus] = useState(null);
   const [open, setOpen] = React.useState(false);
   const [openOne, setOpenOne] = React.useState(false);
 
@@ -70,71 +77,44 @@ export default function EmpInfo({ handleNext }) {
     setOpenOne(true);
   };
 
+  const InitialFields = {
+    email: status?.data?.personalEmail ?? "",
+    name: status?.data?.firstName ?? "",
+    name1: status?.data?.lastName ?? "",
+    gender: status?.data?.gender ?? "",
+    dob: status?.data?.dob ?? "",
+    bloodgroup: status?.data?.bloodGroup ?? "",
+    tags: status?.data?.maritalStatus ?? "",
+    relation: status?.data?.fatherSpouseName ?? "",
+    phone: status?.data?.phNo1 ?? "",
+    phone2: status?.data?.phNo2 ?? "",
+    zip: status?.data?.pincode ?? "",
+    address1: status?.data?.address1 ?? "",
+    address2: status?.data?.address2 ?? "",
+    landmark: status?.data?.landmark ?? "",
+    city: status?.data?.city ?? "",
+    state: status?.data?.state ?? "",
+    country: status?.data?.country ?? "",
+  };
+
+  useEffect(() => {
+    const id = query.get("emp_id");
+    dispatch(Personal(id)).then((res) => {
+      setStatus(res?.payload);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleSubmit = async (value) => {
     console.log(value);
-    const {
-      name,
-      name1,
-      gender,
-      dob,
-      bloodgroup,
-      tags,
-      relation,
-      phone,
-      phone2,
-      zip,
-      address1,
-      address2,
-      email,
-      landmark,
-      city,
-      state,
-      country,
-    } = value;
-    const obj = {
-      personalEmail: email,
-      firstName: name,
-      lastName: name1,
-      gender: gender,
-      dob: dob,
-      bloodGroup: bloodgroup,
-      maritalStatus: tags,
-      fatherSpouseName: relation,
-      phNo1: phone,
-      phNo2: phone2,
-      pincode: zip,
-      address1: address1,
-      address2: address2,
-      landmark: landmark,
-      city: city,
-      state: state,
-      country: country,
-    };
-    dispatch(PersonalInformation(obj)).then((res) => {});
-    handleNext();
+    const id = query.get("emp_id");
+    dispatch(PersonalEdit(id)).then((res) => {});
+    // handleEdit();
   };
 
   return (
     <Formik
-      initialValues={{
-        name: "",
-        name1: "",
-        email: "",
-        phone: "",
-        phone2: "",
-        dob: "",
-        bloodgroup: "",
-        gender: "",
-        tags: "",
-        relation: "",
-        address1: "",
-        address2: "",
-        landmark: "",
-        country: "",
-        state: "",
-        city: "",
-        zip: "",
-      }}
+      initialValues={InitialFields}
       validationSchema={EmployeeSchema}
       enableReinitialize={true}
       validateOnChange={true}
@@ -158,9 +138,9 @@ export default function EmpInfo({ handleNext }) {
                   margin="normal"
                   fullWidth
                   id="name"
-                  label="First name"
+                  value={values.name}
                   name="name"
-                  disable="false"
+                  label="First name"
                 />
               </Grid>
               <Grid item xs={12} md={6}>
@@ -170,9 +150,10 @@ export default function EmpInfo({ handleNext }) {
                   margin="normal"
                   fullWidth
                   id="name1"
-                  label="Last name"
+                  value={values.name1}
                   name="name1"
                   disable="false"
+                  label="Last name"
                 />
               </Grid>
               <Grid item xs={12} md={4}>
@@ -182,9 +163,9 @@ export default function EmpInfo({ handleNext }) {
                   margin="normal"
                   fullWidth
                   id="date"
-                  label="Date Of Birth"
+                  value={values.dob}
                   name="dob"
-                  disable="false"
+                  label="Date Of Birth"
                 />
               </Grid>
 
@@ -195,11 +176,12 @@ export default function EmpInfo({ handleNext }) {
                   margin="normal"
                   fullWidth
                   id="email"
-                  label="Personal Mail ID"
+                  value={values.email}
                   name="email"
-                  disable="false"
+                  label="Personal Mail ID"
                 />
               </Grid>
+
               <Grid item xs={12} md={4}>
                 <FormControl className={classes.formControl}>
                   <InputLabel>Gender</InputLabel>
@@ -210,6 +192,7 @@ export default function EmpInfo({ handleNext }) {
                     onClose={handleClose}
                     onOpen={handleOpen}
                     value={values.gender}
+                    disabled="true"
                     onChange={(e) => setFieldValue("gender", e.target.value)}
                     //onChange={handleChange}
                   >
@@ -230,9 +213,9 @@ export default function EmpInfo({ handleNext }) {
                   margin="normal"
                   fullWidth
                   id="bloodgroup"
-                  label="Blood Group"
+                  value={values.bloodgroup}
                   name="bloodgroup"
-                  disable="false"
+                  label="Blood Group"
                 />
               </Grid>
               <Grid item xs={12} md={4}>
@@ -246,6 +229,7 @@ export default function EmpInfo({ handleNext }) {
                     value={values.tags}
                     onChange={(e) => setFieldValue("tags", e.target.value)}
                     name="tags"
+                    disabled="true"
                   >
                     <MenuItem disabled value="">
                       <em> Marital status</em>
@@ -263,9 +247,9 @@ export default function EmpInfo({ handleNext }) {
                   margin="normal"
                   fullWidth
                   id="relation"
-                  label="Father/Spouse 's name"
+                  value={values.relation}
                   name="relation"
-                  disable="false"
+                  label="Father/Spouse 's name"
                 />
               </Grid>
               <Grid item xs={12} md={6}>
@@ -275,9 +259,9 @@ export default function EmpInfo({ handleNext }) {
                   margin="normal"
                   fullWidth
                   id="phone"
-                  label="Phone number"
+                  value={values.phone}
                   name="phone"
-                  disable="false"
+                  label="Phone number"
                 />
               </Grid>
               <Grid item xs={12} md={6}>
@@ -287,9 +271,9 @@ export default function EmpInfo({ handleNext }) {
                   margin="normal"
                   fullWidth
                   id="phone2"
-                  label="Alternate number"
+                  value={values.phone2}
                   name="phone2"
-                  disable="false"
+                  label="Alternate number"
                 />
               </Grid>
               <Grid item xs={12} md={6}>
@@ -299,9 +283,9 @@ export default function EmpInfo({ handleNext }) {
                   margin="normal"
                   fullWidth
                   id="address1"
-                  label="Address Line 1"
+                  value={values.address1}
                   name="address1"
-                  disable="false"
+                  label="Address Line 1"
                 />
               </Grid>
               <Grid item xs={12} md={6}>
@@ -311,9 +295,9 @@ export default function EmpInfo({ handleNext }) {
                   margin="normal"
                   fullWidth
                   id="address2"
-                  label="Address Line 2"
+                  value={values.address2}
                   name="address2"
-                  disable="false"
+                  label="Address Line 2"
                 />
               </Grid>
               <Grid item xs={12} md={4}>
@@ -323,9 +307,9 @@ export default function EmpInfo({ handleNext }) {
                   margin="normal"
                   fullWidth
                   id="landmark"
-                  label="Landmark"
+                  value={values.landmark}
                   name="landmark"
-                  disable="false"
+                  label="Landmark"
                 />
               </Grid>
               <Grid item xs={12} md={4}>
@@ -335,9 +319,9 @@ export default function EmpInfo({ handleNext }) {
                   margin="normal"
                   fullWidth
                   id="country"
-                  label="Country"
+                  value={values.country}
                   name="country"
-                  disable="false"
+                  label="Country"
                 />
               </Grid>
               <Grid item xs={12} md={4}>
@@ -347,9 +331,9 @@ export default function EmpInfo({ handleNext }) {
                   margin="normal"
                   fullWidth
                   id="state"
-                  label="State"
+                  value={values.state}
                   name="state"
-                  disable="false"
+                  label="State"
                 />
               </Grid>
               <Grid item xs={12} md={4}>
@@ -359,9 +343,9 @@ export default function EmpInfo({ handleNext }) {
                   margin="normal"
                   fullWidth
                   id="city"
-                  label="City"
+                  value={values.city}
                   name="city"
-                  disable="false"
+                  label="City"
                 />
               </Grid>
               <Grid item xs={12} md={4}>
@@ -371,13 +355,22 @@ export default function EmpInfo({ handleNext }) {
                   margin="normal"
                   fullWidth
                   id="zip"
-                  label="Zip code"
+                  value={values.zip}
                   name="zip"
-                  disable="false"
+                  label="Zip code"
                 />
               </Grid>
             </Grid>
             <div className={classes.buttons}>
+            <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                // onClick={handleEdit}
+                className={classes.button}
+              >
+                Edit
+              </Button>
               <Button
                 type="submit"
                 variant="contained"
@@ -385,7 +378,7 @@ export default function EmpInfo({ handleNext }) {
                 onClick={handleNext}
                 className={classes.button}
               >
-                save
+                Save & Next
               </Button>
             </div>
           </Form>

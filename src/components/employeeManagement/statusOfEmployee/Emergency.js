@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { TextField } from "formik-material-ui";
@@ -13,7 +13,8 @@ import {
   FormControl,
 } from "@material-ui/core";
 import { useDispatch } from "react-redux";
-import { EmergencyContact } from "store/action";
+import { Emergency, EmergencyEdit } from "store/action";
+import { useLocation } from "react-router-dom";
 
 const EmergencySchema = Yup.object().shape({
   name: Yup.string()
@@ -27,6 +28,10 @@ const EmergencySchema = Yup.object().shape({
   tags: Yup.string().required("Required"),
   address1: Yup.string().required("Required"),
 });
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
 const useStyles = makeStyles((theme) => ({
   submit: {
@@ -52,7 +57,9 @@ const useStyles = makeStyles((theme) => ({
 export default function EmergencyInfo({ handleNext, handleBack }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const query = useQuery();
   const dispatch = useDispatch();
+  const [status, setStatus] = useState(null);
 
   const handleClose = () => {
     setOpen(false);
@@ -61,29 +68,33 @@ export default function EmergencyInfo({ handleNext, handleBack }) {
   const handleOpen = () => {
     setOpen(true);
   };
+
+  const InitialFields = {
+    name: status?.data?.fullName ?? "",
+    phone: status?.data?.phNo ?? "",
+    tags: status?.data?.relation ?? "",
+    address1: status?.data?.address1 ?? "",
+    address2: status?.data?.address2 ?? "",
+  };
+
+  useEffect(() => {
+    const id = query.get("leaveId");
+    dispatch(Emergency(id)).then((res) => {
+      setStatus(res?.payload);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleSubmit = async (value) => {
     console.log(value);
-    const { name, phone, tags, address1, address2 } = value;
-    const obj = {
-      fullName: name,
-      phNo: phone,
-      relation: tags,
-      address1: address1,
-      address2: address2,
-    };
-    dispatch(EmergencyContact(obj)).then((res) => {});
-    handleNext();
+    const id = query.get("leaveId");
+    dispatch(EmergencyEdit(id)).then((res) => {});
+    // handleEdit();
   };
 
   return (
     <Formik
-      initialValues={{
-        name: "",
-        phone: "",
-        tags: "",
-        address1: "",
-        address2: "",
-      }}
+      initialValues={InitialFields}
       validationSchema={EmergencySchema}
       enableReinitialize={true}
       validateOnChange={true}
@@ -108,6 +119,7 @@ export default function EmergencyInfo({ handleNext, handleBack }) {
                   id="name"
                   label="Contact name"
                   name="name"
+                  value={values.name}
                 />
               </Grid>
               <Grid item xs={12} md={4}>
@@ -119,6 +131,7 @@ export default function EmergencyInfo({ handleNext, handleBack }) {
                   id="phone"
                   name="phone"
                   label="Phone no."
+                  value={values.phone}
                 />
               </Grid>
               <Grid item xs={12} md={4}>
@@ -133,6 +146,7 @@ export default function EmergencyInfo({ handleNext, handleBack }) {
                     onChange={(e) => setFieldValue("tags", e.target.value)}
                     //onChange={handleChange}
                     name="tags"
+                    disabled="true"
                   >
                     <MenuItem disabled value="">
                       <em> relation </em>
@@ -153,6 +167,7 @@ export default function EmergencyInfo({ handleNext, handleBack }) {
                   name="address1"
                   id="address1"
                   label="Address line 1"
+                  value={values.address1}
                 />
               </Grid>
               <Grid item xs={12} md={6}>
@@ -164,6 +179,7 @@ export default function EmergencyInfo({ handleNext, handleBack }) {
                   id="address2"
                   name="address2"
                   label="Address line 2"
+                  value={values.address2}
                 />
               </Grid>
             </Grid>
@@ -173,13 +189,23 @@ export default function EmergencyInfo({ handleNext, handleBack }) {
               </Button>
 
               <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                // onClick={handleEdit}
+                className={classes.button}
+              >
+                Edit
+              </Button>
+
+              <Button
                 variant="contained"
                 color="primary"
                 type="submit"
                 onClick={handleNext}
                 className={classes.button}
               >
-                Save
+                Save & Next
               </Button>
             </div>
           </Form>

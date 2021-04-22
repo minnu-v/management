@@ -30,4 +30,33 @@ export const Reject = createAsyncThunk("status/put", async (id) => {
     const responce = await fetchHandler(fetchOptions);
     return await responce;
   });
-  
+
+  export const JobEdit = createAsyncThunk("status/put", async (id) => {
+    const fetchOptions = {
+      url: `/status/${id}`,
+      method: "PUT",
+      secure: true,
+    };
+    const responce = await fetchHandler(fetchOptions);
+    return await responce;
+  });
+
+  export const PersonalEdit = createAsyncThunk("status/put", async (id) => {
+    const fetchOptions = {
+      url: `/status/${id}`,
+      method: "PUT",
+      secure: true,
+    };
+    const responce = await fetchHandler(fetchOptions);
+    return await responce;
+  });
+
+  export const EmergencyEdit = createAsyncThunk("status/put", async (id) => {
+    const fetchOptions = {
+      url: `/status/${id}`,
+      method: "PUT",
+      secure: true,
+    };
+    const responce = await fetchHandler(fetchOptions);
+    return await responce;
+  });

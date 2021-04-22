@@ -5,6 +5,9 @@ import {
   Rejected,
   EmployeeList,
   ChangeLeaveStatus,
+  Job,
+  Personal,
+  Emergency,
 } from "store/action";
 
 export const requestReducer = createSlice({
@@ -74,6 +77,42 @@ export const requestReducer = createSlice({
       state.product = payload;
     },
     [EmployeeList.rejected]: (state, action) => {
+      state.loading = "idle";
+      state.error = action.error;
+    },
+    [Job.pending]: (state) => {
+      state.loading = "pending";
+    },
+    [Job.fulfilled]: (state, action) => {
+      const { payload } = action;
+      state.loading = "idle";
+      state.product = payload;
+    },
+    [Job.rejected]: (state, action) => {
+      state.loading = "idle";
+      state.error = action.error;
+    },
+    [Personal.pending]: (state) => {
+      state.loading = "pending";
+    },
+    [Personal.fulfilled]: (state, action) => {
+      const { payload } = action;
+      state.loading = "idle";
+      state.product = payload;
+    },
+    [Personal.rejected]: (state, action) => {
+      state.loading = "idle";
+      state.error = action.error;
+    },
+    [Emergency.pending]: (state) => {
+      state.loading = "pending";
+    },
+    [Emergency.fulfilled]: (state, action) => {
+      const { payload } = action;
+      state.loading = "idle";
+      state.product = payload;
+    },
+    [Emergency.rejected]: (state, action) => {
       state.loading = "idle";
       state.error = action.error;
     },

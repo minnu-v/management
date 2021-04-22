@@ -82,7 +82,7 @@ export default function JobInfo({ handleNext, handleBack }) {
     } = value;
     const obj = {
       designation: designation,
-      userId: empid,
+      user_id: empid,
       salary: salary,
       accountNo: accno,
       ifsc: ifsc,
@@ -157,18 +157,7 @@ export default function JobInfo({ handleNext, handleBack }) {
                   label="Salary $"
                 />
               </Grid>
-              <Grid item xs={12} md={4}>
-                <Field
-                  component={TextField}
-                  variant="standard"
-                  margin="normal"
-                  fullWidth
-                  id="date"
-                  label="Date Of Joining"
-                  name="doj"
-                />
-              </Grid>
-              <Grid item xs={12} md={4}>
+              <Grid item xs={12} md={6}>
                 <Field
                   component={TextField}
                   variant="standard"
@@ -179,7 +168,7 @@ export default function JobInfo({ handleNext, handleBack }) {
                   label="Account number"
                 />
               </Grid>
-              <Grid item xs={12} md={4}>
+              <Grid item xs={12} md={6}>
                 <Field
                   component={TextField}
                   variant="standard"
